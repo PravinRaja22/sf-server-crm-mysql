@@ -24,6 +24,9 @@ function getdatafromreact(fastify, options, done) {
 }
 console.log("sad");
 console.log("test")
+console.log("test 2")
+console.log("test 3")
+
 module.exports = getdatafromreact
 
 
