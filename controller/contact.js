@@ -32,7 +32,7 @@ const insertContact = async (request, reply) => {
             console.log(result);
         }
         toObject(objdata, objvalues)
-        var sql = 'REPLACE INTO contact SET ?'
+        var sql = 'INSERT INTO contact SET ?'
         // var values = {
         //     salutation: request.body.salutation,
         //     firstname: request.body.firstName,

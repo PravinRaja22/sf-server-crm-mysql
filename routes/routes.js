@@ -2,6 +2,8 @@ const {getEnquiry,insertEnquiry,deleteEnquiry} = require('../controller/enquiry'
 const { getDeals, insertDeals, deleteDeals } = require('../controller/deals')
 const { getInventories,insertInventories,deleteInventories} = require('../controller/inventories')
 const {getContact,insertContact,deleteContact} = require('../controller/contact')
+const { getAccount, insertAccount, deleteAccount } = require ('../controller/account.js')
+const {getTask,insertTask,deleteTask} = require('../controller/task')
 function getdatafromreact(fastify, options, done) {
 
     fastify.post('/leads',getEnquiry)
@@ -12,25 +14,24 @@ function getdatafromreact(fastify, options, done) {
     fastify.post('/UpsertOpportunity',insertDeals)
     fastify.post('/deleteOpportunity',deleteDeals)
 
-    fastify.post('/Inventories',getInventories)
+    fastify.post('/inventories',getInventories)
     fastify.post('/UpsertInventory',insertInventories)
-    fastify.post('/deleteInventories',deleteInventories)
-
-
-
-    
+    fastify.post('/deleteInventory',deleteInventories)
+  
     fastify.post('/contacts',getContact)
     fastify.post('/UpsertContact',insertContact)
     fastify.post('/deleteContact',deleteContact)
+
+    fastify.post('/accounts',getAccount)
+    fastify.post('/UpsertAccount',insertAccount)
+    fastify.post('/deleteAccount',deleteAccount)
+
+    fastify.post('/Task',getTask)
+    fastify.post('/UpsertTask',insertTask)
+    fastify.post('/deleteTask',deleteTask)
     
     done()
 }
-console.log("sad");
-console.log("test")
-console.log("test 2")
-console.log("test 3")
-console.log("test 4")
-
 
 module.exports = getdatafromreact
 

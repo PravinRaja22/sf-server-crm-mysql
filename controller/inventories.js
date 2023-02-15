@@ -59,14 +59,14 @@ const deleteInventories = async (request, reply) => {
     try {
         console.log('query:', request.query.code);
         let deleteInventorydata = request.query.code
-        var sql = 'DELETE FROM Inventory WHERE _id = ' + deleteLeaddata;
+        var sql = 'DELETE FROM Inventory WHERE _id = ' + deleteInventorydata;
         let deleteInventoriesResult = await executeQuery(sql, [])
         reply.send("Data Deleted Successfully")
 
     }
 
     catch (err) {
-        console.log("error happenend in inventory deletion")
+        console.log("error happenend in inventory deletion: ",err.message)
         reply.send(err.message)
     }
 }
