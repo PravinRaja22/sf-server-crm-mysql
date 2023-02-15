@@ -5,13 +5,6 @@ var pool = mysql.createPool({
   password:process.env.MYSQLPASSWORD,
   database:process.env.DATABASE
 });
-// console.log(process.env.MYSQLUSERNAME);
-// console.log(process.env.MYSQLPASSWORD);
-// console.log(process.env.HOST);
-// console.log(process.env.DATABASE);
-
-
-
 pool.getConnection((err) => {
   if (err) {
     console.log('Error message is :', err.message +' & Error Stack is : ', err.stack)
@@ -34,7 +27,7 @@ const executeQuery = (query,arrayparams)=>{
           return (err)
         }
         else{
-          console.log("inside else part of query");
+          console.log("sucess part");
           resolve(data)
         }
       })
