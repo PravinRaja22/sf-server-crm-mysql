@@ -1,6 +1,7 @@
 const {getEnquiry,insertEnquiry,deleteEnquiry} = require('../controller/enquiry')
 const { getDeals, insertDeals, deleteDeals } = require('../controller/deals')
 const { getInventories,insertInventories,deleteInventories} = require('../controller/inventories')
+const {getContact,insertContact,deleteContact} = require('../controller/contact')
 function getdatafromreact(fastify, options, done) {
 
     fastify.post('/leads',getEnquiry)
@@ -12,10 +13,23 @@ function getdatafromreact(fastify, options, done) {
     fastify.post('/deleteOpportunity',deleteDeals)
 
     fastify.post('/Inventories',getInventories)
-    fastify.post('/UpsertInventories',insertInventories)
+    fastify.post('/UpsertInventory',insertInventories)
     fastify.post('/deleteInventories',deleteInventories)
+
+    fastify.post('/contacts',getContact)
+    fastify.post('/UpsertContact',insertContact)
+    fastify.post('/deleteContact',deleteContact)
     
     done()
 }
 
 module.exports = getdatafromreact
+
+
+
+
+
+
+
+
+

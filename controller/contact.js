@@ -1,24 +1,24 @@
 const { executeQuery } = require('../config/mySql')
-const getInventories = async (request, reply) => {
-    console.log("inside get Inventory");
+const getContact = async (request, reply) => {
+    console.log("inside get contact");
     console.log(request.body)
     try {
-        var sql = "select * from Inventory";
-        let getEnquirydata = await executeQuery(sql, [])
-        reply.send(getEnquirydata)
+        var sql = "select * from contact";
+        let getContactdata = await executeQuery(sql, [])
+        reply.send(getContactdata)
 
     }
     catch (err) {
-        console.log('error in inventories get')
+        console.log('error in contact get')
         reply.send(err.message)
 
     }
 
 }
 
-const insertInventories = async (request, reply) => {
+const insertContact = async (request, reply) => {
     try {
-        console.log("inside insert Inventories");
+        console.log("inside insert contact");
         console.log(request.body);
         let objdata = Object.keys(request.body);
         let objvalues = Object.values(request.body);
@@ -32,7 +32,7 @@ const insertInventories = async (request, reply) => {
             console.log(result);
         }
         toObject(objdata, objvalues)
-        var sql = 'REPLACE INTO Inventory SET ?'
+        var sql = 'REPLACE INTO contact SET ?'
         // var values = {
         //     salutation: request.body.salutation,
         //     firstname: request.body.firstName,
@@ -40,27 +40,26 @@ const insertInventories = async (request, reply) => {
         // }
        // console.log(values);
 
-        let insertDeals = await executeQuery(sql, result)
-        console.log(insertDeals)
-        console.log(insertDeals)
-        console.log(insertDeals)
+        let insertContact = await executeQuery(sql, result)
+        console.log(insertContact)
+
 
         reply.send("Data inserted Successfully")
     }
     catch (err) {
-        console.log('error in inventory insertion ');
+        console.log('error in Contact insertion ');
         reply.send(err.message)
     }
 
 }
 
-const deleteInventories = async (request, reply) => {
-    console.log("inside delete Inventories");
+const deleteContact = async (request, reply) => {
+    console.log("inside delete Contact");
     try {
         console.log('query:', request.query.code);
-        let deleteInventorydata = request.query.code
-        var sql = 'DELETE FROM Inventory WHERE _id = ' + deleteLeaddata;
-        let deleteInventoriesResult = await executeQuery(sql, [])
+        let deleteContactdata = request.query.code
+        var sql = 'DELETE FROM contact WHERE _id = ' + deleteContactdata;
+        let deleteContactResult = await executeQuery(sql, [])
         reply.send("Data Deleted Successfully")
 
     }
@@ -70,4 +69,4 @@ const deleteInventories = async (request, reply) => {
         reply.send(err.message)
     }
 }
-module.exports = {getInventories,insertInventories,deleteInventories}
+module.exports = {getContact,insertContact,deleteContact}
