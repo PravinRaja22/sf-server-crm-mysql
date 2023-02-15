@@ -22,7 +22,7 @@ function getdatafromreact(fastify, options, done) {
     
     done()
 }
-
+console.log("sad");
 module.exports = getdatafromreact
 
 
