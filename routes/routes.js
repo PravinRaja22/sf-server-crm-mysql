@@ -23,6 +23,7 @@ function getdatafromreact(fastify, options, done) {
     done()
 }
 console.log("sad");
+console.log("test")
 module.exports = getdatafromreact
 
 
