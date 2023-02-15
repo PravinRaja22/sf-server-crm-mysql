@@ -16,6 +16,9 @@ function getdatafromreact(fastify, options, done) {
     fastify.post('/UpsertInventory',insertInventories)
     fastify.post('/deleteInventories',deleteInventories)
 
+
+
+    
     fastify.post('/contacts',getContact)
     fastify.post('/UpsertContact',insertContact)
     fastify.post('/deleteContact',deleteContact)
@@ -26,6 +29,8 @@ console.log("sad");
 console.log("test")
 console.log("test 2")
 console.log("test 3")
+console.log("test 4")
+
 
 module.exports = getdatafromreact
 

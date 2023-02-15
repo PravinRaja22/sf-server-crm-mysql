@@ -5,6 +5,7 @@ const getDeals = async (request, reply) => {
     try {
         var sql = "select * from Deals";
         let getEnquirydata = await executeQuery(sql, [])
+        console.log("test");
         reply.send(getEnquirydata)
 
     }
