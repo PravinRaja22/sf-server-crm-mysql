@@ -9,7 +9,7 @@ const getAccount = async (request, reply) => {
 
     }
     catch (err) {
-        console.log('error in deals get')
+        console.log('error in Accounts get')
         reply.send(err.message)
 
     }
@@ -67,4 +67,17 @@ const deleteAccount = async (request, reply) => {
         reply.send(err.message)
     }
 }
+
+
+const updateAccount = async (request,reply)=>{
+    try{
+   console.log('inside update account')
+
+    }
+    catch(e){
+
+    }
+}
+
+
 module.exports = { getAccount, insertAccount, deleteAccount }

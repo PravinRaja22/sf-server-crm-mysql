@@ -3,7 +3,9 @@ const { getDeals, insertDeals, deleteDeals } = require('../controller/deals')
 const { getInventories,insertInventories,deleteInventories} = require('../controller/inventories')
 const {getContact,insertContact,deleteContact} = require('../controller/contact')
 const { getAccount, insertAccount, deleteAccount } = require ('../controller/account.js')
-const {getTask,insertTask,deleteTask} = require('../controller/task')
+const {getTask,insertTask,deleteTask,updateTask} = require('../controller/task')
+const {fileupload,Multer} = require('../fileuploader/multer')
+const { insertFile } = require('../controller/fileupload')
 function getdatafromreact(fastify, options, done) {
 
     fastify.post('/leads',getEnquiry)
@@ -27,8 +29,13 @@ function getdatafromreact(fastify, options, done) {
     fastify.post('/deleteAccount',deleteAccount)
 
     fastify.post('/Task',getTask)
-    fastify.post('/UpsertTask',insertTask)
+    fastify.post('/InsertTask',insertTask)
     fastify.post('/deleteTask',deleteTask)
+    fastify.post('/UpdateTask',updateTask)
+
+
+    fastify.post('/uploadfile',{preHandler:fileupload},insertFile)
+
     
     done()
 }

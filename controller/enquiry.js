@@ -23,26 +23,44 @@ const insertEnquiry = async (request, reply) => {
         let objvalues = Object.values(request.body);
         let result = {};
         console.log("keys are : " + objdata);
-        async function toObject(names, values) {
-            for (let i = 0; i < names.length; i++)
-                if (names[i] != '_id') {
+        if(request.body._id){
+            console.log("inside if condition for id");
+            async function toObject(names, values) {
+                for (let i = 0; i < names.length; i++)
+                {
                     result[names[i]] = values[i]
                 }
-            console.log(result);
-        }
-        toObject(objdata, objvalues)
+                    
+                console.log(result);
+            }
+            toObject(objdata, objvalues)
 
-        var sql = 'REPLACE INTO enquiry SET ?'
-        var values = {
-            salutation: request.body.salutation,
-            firstname: request.body.firstName,
-            Phone: request.body.phone,
+            var sql = 'REPLACE INTO enquiry SET ?'
+            let insertEnquiry = await executeQuery(sql, result)
+            console.log(insertEnquiry)
+            reply.send("Data updated Successfully")
         }
-        console.log(values);
+        else if(!request.body._id){
+            console.log("inside else if condition for id");
+            async function toObject(names, values) {
+                for (let i = 0; i < names.length; i++){
+                    result[names[i]] = values[i]
+                }
+                      
+                
+                console.log(result);
+            }
+            toObject(objdata, objvalues)
 
-        let insertEnquiry = await executeQuery(sql, result)
-        console.log(insertEnquiry)
-        reply.send("Data inserted Successfully")
+            var sql = 'REPLACE INTO enquiry SET ?'
+            let insertEnquiry = await executeQuery(sql, result)
+            console.log(insertEnquiry)
+            reply.send("Data inserted Successfully")
+
+        }
+       
+
+     
     }
     catch (err) {
         console.log(err.message);

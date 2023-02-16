@@ -38,12 +38,10 @@ const insertTask = async (request, reply) => {
         //     firstname: request.body.firstName,
         //     Phone: request.body.phone,
         // }
-       // console.log(values);
+        // console.log(values);
 
         let insertTask = await executeQuery(sql, result)
-        console.log(insertDeals)
-        console.log(insertDeals)
-        console.log(insertDeals)
+
 
         reply.send("Data inserted Successfully")
     }
@@ -66,8 +64,37 @@ const deleteTask = async (request, reply) => {
     }
 
     catch (err) {
-        console.log("error happenend in Task deletion: ",err.message)
+        console.log("error happenend in Task deletion: ", err.message)
         reply.send(err.message)
     }
 }
-module.exports = {getTask,insertTask,deleteTask}
+
+const updateTask = async (request, reply) => {
+    try {
+        console.log('inside update task')
+        console.log(request.body);
+        let objdata = Object.keys(request.body);
+        let objvalues = Object.values(request.body);
+        let result = {};
+        console.log("keys are : " + objdata);
+        async function toObject(names, values) {
+            for (let i = 0; i < names.length; i++)
+                //if (names[i] != '_id') {
+                result[names[i]] = values[i]
+            // }
+            console.log(result);
+        }
+        toObject(objdata, objvalues)
+
+
+
+        var sql = 'update Task set subject=?, relatedTo=?, assignedTo=?,description=?, attachments=?, object=?, LeadId=?, createdbyId=?, createdDate=?, modifiedDate=?, StartDate=?,EndDate=?, leadDetails=? where _id = ' + result._id;
+        let deleteTaskResult = await executeQuery(sql, objvalues)
+        reply.send("Data updated Successfully")
+    }
+    catch (err) {
+        console.log(err.message);
+        reply.send(err.message)
+    }
+}
+module.exports = { getTask, insertTask, deleteTask, updateTask }
