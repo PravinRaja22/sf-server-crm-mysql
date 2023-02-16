@@ -7,6 +7,7 @@ const { getTask, insertTask, deleteTask, updateTask } = require('../controller/t
 const { fileUpload, Multer } = require('../uploader/multer')
 const { insertFile } = require('../controller/fileupload/fileupload')
 const { genaratePreview, dataloaderaccount, dataloaderdeals, dataloaderEnquiry } = require('../controller/dataLoader/dataloader')
+const { sendEmail } = require('../Email/sendemail')
 
 function getdatafromreact(fastify, options, done) {
 
@@ -43,7 +44,8 @@ function getdatafromreact(fastify, options, done) {
     fastify.post('/dataloaderlead', { preHandler: fileUpload }, dataloaderEnquiry)
 
 
-
+    fastify.post("/api/bulkemail", {preHandler: fileUpload},sendEmail )
+     
 
 
     done()
