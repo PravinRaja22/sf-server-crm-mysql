@@ -1,4 +1,4 @@
-const { executeQuery } = require('../../config/mySql')
+const { executeQuery } = require('../../db/mySql')
 
 const csvtojson = require('csvtojson')
 const genaratePreview = async (request, reply) => {
@@ -106,7 +106,7 @@ const dataloaderdeals = async (request, reply) => {
                 jsonobj.forEach((variable) => {
                     variable.createdDate = someDate1;
                     variable.modifiedDate = someDate1
-                    variable.fullName = variable.first
+                    // variable.fullName = variable.first
                 })
 
                 console.log(jsonobj);

@@ -1,4 +1,4 @@
-const { executeQuery } = require('../../config/mySql')
+const { executeQuery } = require('../../db/mySql')
 const getContact = async (request, reply) => {
     console.log("inside get contact");
     console.log(request.body)

@@ -44,7 +44,7 @@ function getdatafromreact(fastify, options, done) {
     fastify.post('/dataloaderlead', { preHandler: fileUpload }, dataloaderEnquiry)
 
 
-    fastify.post("/api/bulkemail", {preHandler: fileUpload},sendEmail )
+    fastify.post('/bulkemail', {preHandler: fileUpload},sendEmail )
      
 
 

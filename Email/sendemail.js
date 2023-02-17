@@ -38,7 +38,7 @@ async function sendEmail(request) {
 let mailtransporter = nodemailer.createTransport({
             service: process.env.GMAIL,
             auth: {
-                user: process.env.FROMEMAILID,
+                user: process.env.FORMEMAILID,
                 pass: process.env.PASSWORD,
             }
         })
