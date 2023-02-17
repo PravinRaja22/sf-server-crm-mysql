@@ -4,8 +4,8 @@ const getInventories = async (request, reply) => {
     console.log(request.body)
     try {
         var sql = "select * from Inventory";
-        let getEnquirydata = await executeQuery(sql, [])
-        reply.send(getEnquirydata)
+        let getInventorydata = await executeQuery(sql, [])
+        reply.send(getInventorydata)
 
     }
     catch (err) {
@@ -40,10 +40,10 @@ const insertInventories = async (request, reply) => {
         // }
        // console.log(values);
 
-        let insertDeals = await executeQuery(sql, result)
-        console.log(insertDeals)
-        console.log(insertDeals)
-        console.log(insertDeals)
+        let insertInventory = await executeQuery(sql, result)
+        console.log(insertInventory)
+        console.log(insertInventory)
+        console.log(insertInventory)
 
         reply.send("Data inserted Successfully")
     }

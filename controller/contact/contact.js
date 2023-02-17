@@ -44,7 +44,7 @@ const insertContact = async (request, reply) => {
         console.log(insertContact)
 
 
-        reply.send("Data inserted Successfully")
+        reply.send("Contact inserted Successfully")
     }
     catch (err) {
         console.log('error in Contact insertion ');
@@ -60,12 +60,12 @@ const deleteContact = async (request, reply) => {
         let deleteContactdata = request.query.code
         var sql = 'DELETE FROM contact WHERE _id = ' + deleteContactdata;
         let deleteContactResult = await executeQuery(sql, [])
-        reply.send("Data Deleted Successfully")
+        reply.send("Contact Deleted Successfully")
 
     }
 
     catch (err) {
-        console.log("error happenend in inventory deletion")
+        console.log("error happenend in Contact deletion")
         reply.send(err.message)
     }
 }

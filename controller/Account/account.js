@@ -42,7 +42,7 @@ const insertAccount = async (request, reply) => {
 
         let insertAccount = await executeQuery(sql, result)
         console.log(insertAccount)
-        reply.send("Data inserted Successfully")
+        reply.send("Account inserted Successfully")
     }
     catch (err) {
         console.log('error in Account insertion ');
@@ -55,10 +55,10 @@ const deleteAccount = async (request, reply) => {
     console.log("inside detlete Account");
     try {
         console.log('query:', request.query.code);
-        let deleteLeaddata = request.query.code
-        var sql = 'DELETE FROM Account WHERE _id = ' + deleteLeaddata;
-        let deleteLeadResult = await executeQuery(sql, [])
-        reply.send("Data Deleted Successfully")
+        let deleteAccountdata = request.query.code
+        var sql = 'DELETE FROM Account WHERE _id = ' + deleteAccountdata;
+        let deleteAccountResult = await executeQuery(sql, [])
+        reply.send("Account Deleted Successfully")
 
     }
 

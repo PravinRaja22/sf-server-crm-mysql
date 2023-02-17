@@ -4,19 +4,14 @@ const getDeals = async (request, reply) => {
     console.log(request.body)
     try {
         var sql = "select * from Deals";
-        let getEnquirydata = await executeQuery(sql, [])
-        console.log("test");
-        console.log("test");
-
-        reply.send(getEnquirydata)
-
+        let getDealsdata = await executeQuery(sql, [])
+        console.log(getDealsdata);
+        reply.send(getDealsdata)
     }
     catch (err) {
         console.log('error in deals get')
         reply.send(err.message)
-
     }
-
 }
 
 const insertDeals = async (request, reply) => {
@@ -36,35 +31,25 @@ const insertDeals = async (request, reply) => {
         }
         toObject(objdata, objvalues)
         var sql = 'INSERT INTO Deals SET ?'
-        // var values = {
-        //     salutation: request.body.salutation,
-        //     firstname: request.body.firstName,
-        //     Phone: request.body.phone,
-        // }
-       // console.log(values);
-
         let insertDeals = await executeQuery(sql, result)
         console.log(insertDeals)
-        reply.send("Data inserted Successfully")
+        reply.send("Deals inserted Successfully")
     }
     catch (err) {
         console.log('error in deals insertion ');
         reply.send(err.message)
     }
-
 }
 
 const deleteDeals = async (request, reply) => {
     console.log("inside detlete Deals");
     try {
         console.log('query:', request.query.code);
-        let deleteLeaddata = request.query.code
-        var sql = 'DELETE FROM Deals WHERE _id = ' + deleteLeaddata;
-        let deleteLeadResult = await executeQuery(sql, [])
+        let deleteDealsdata = request.query.code
+        var sql = 'DELETE FROM Deals WHERE _id = ' + deleteDealsdata;
+        let deleteDealsResult = await executeQuery(sql, [])
         reply.send("Data Deleted Successfully")
-
     }
-
     catch (err) {
         console.log("error happenend in Deals deletion")
         reply.send(err.message)

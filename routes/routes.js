@@ -8,33 +8,68 @@ const { fileUpload, Multer } = require('../uploader/multer')
 const { insertFile } = require('../controller/fileupload/fileupload')
 const { genaratePreview, dataloaderaccount, dataloaderdeals, dataloaderEnquiry } = require('../controller/dataLoader/dataloader')
 const { sendEmail } = require('../Email/sendemail')
+const {lookupEnquiry } = require('../controller/enquiry/lookupenquiry')
+const { lookupInventory } = require('../controller/inventory/lookupInventory')
+const { lookupDeals } = require('../controller/deals/lookupDeals')
+const { lookupAccount } = require('../controller/Account/lookupAccount')
+const { enquirywithdeals } = require('../controller/deals/dealsWithenquiry')
+const { leadTask } = require('../controller/task/leadTask')
+const { opportunityTask } = require('../controller/task/opportunitytask')
+const { accountTask } = require('../controller/task/accounttask')
 
 function getdatafromreact(fastify, options, done) {
 
     fastify.post('/leads', getEnquiry)
     fastify.post('/UpsertLead', insertEnquiry)
     fastify.post('/deleteLead', deleteEnquiry)
+    fastify.post('/LeadsbyName',lookupEnquiry)
+    fastify.post('/getLeadsbyOppid',enquirywithdeals)
+    fastify.post('/getTaskbyLeadId',leadTask)
 
     fastify.post('/opportunities', getDeals)
     fastify.post('/UpsertOpportunity', insertDeals)
     fastify.post('/deleteOpportunity', deleteDeals)
+    fastify.post('/opportunitiesbyName', lookupDeals)
+fastify.post('/getTaskbyOpportunityId',opportunityTask)
+
+
+
 
     fastify.post('/inventories', getInventories)
     fastify.post('/UpsertInventory', insertInventories)
     fastify.post('/deleteInventory', deleteInventories)
+    fastify.post('/InventoryName',lookupInventory)
+
+
+
+
 
     fastify.post('/contacts', getContact)
     fastify.post('/UpsertContact', insertContact)
     fastify.post('/deleteContact', deleteContact)
 
+
+
+
+
     fastify.post('/accounts', getAccount)
     fastify.post('/UpsertAccount', insertAccount)
     fastify.post('/deleteAccount', deleteAccount)
+    fastify.post('/accountsname',lookupAccount)
+    fastify.post('/getTaskbyAccountId',accountTask)
+
+
+
+
 
     fastify.post('/Task', getTask)
     fastify.post('/InsertTask', insertTask)
     fastify.post('/deleteTask', deleteTask)
-    fastify.post('/UpdateTask', updateTask)
+    fastify.post('/UpsertTask', insertTask)
+
+
+
+
 
 
     fastify.post('/uploadfile', { preHandler: fileUpload }, insertFile)
@@ -42,6 +77,8 @@ function getdatafromreact(fastify, options, done) {
     fastify.post('/dataloaderAccount', { preHandler: fileUpload }, dataloaderaccount)
     fastify.post('/dataloaderOpportunity', { preHandler: fileUpload }, dataloaderdeals)
     fastify.post('/dataloaderlead', { preHandler: fileUpload }, dataloaderEnquiry)
+
+
 
 
     fastify.post('/bulkemail', {preHandler: fileUpload},sendEmail )
