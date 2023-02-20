@@ -31,12 +31,10 @@ const executeQuery = (query,arrayparams)=>{
           resolve(data)
         }
       })
-
     }
     catch(err){
       reject(err)
-    }
-    
+    } 
   });
 }
 

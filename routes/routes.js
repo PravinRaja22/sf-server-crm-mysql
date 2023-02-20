@@ -8,7 +8,7 @@ const { fileUpload, Multer } = require('../uploader/multer')
 const { insertFile } = require('../controller/fileupload/fileupload')
 const { genaratePreview, dataloaderaccount, dataloaderdeals, dataloaderEnquiry } = require('../controller/dataLoader/dataloader')
 const { sendEmail } = require('../Email/sendemail')
-const {lookupEnquiry } = require('../controller/enquiry/lookupenquiry')
+const { lookupEnquiry } = require('../controller/enquiry/lookupenquiry')
 const { lookupInventory } = require('../controller/inventory/lookupInventory')
 const { lookupDeals } = require('../controller/deals/lookupDeals')
 const { lookupAccount } = require('../controller/Account/lookupAccount')
@@ -16,7 +16,8 @@ const { enquirywithdeals } = require('../controller/deals/dealsWithenquiry')
 const { leadTask } = require('../controller/task/leadTask')
 const { opportunityTask } = require('../controller/task/opportunitytask')
 const { accountTask } = require('../controller/task/accounttask')
-
+const { inventorywithdeals } = require('../controller/deals/dealwithinventory')
+const { Inventorywithaccount } = require('../controller/Account/accountInventory')
 function getdatafromreact(fastify, options, done) {
 
     fastify.post('/leads', getEnquiry)
@@ -31,6 +32,7 @@ function getdatafromreact(fastify, options, done) {
     fastify.post('/deleteOpportunity', deleteDeals)
     fastify.post('/opportunitiesbyName', lookupDeals)
     fastify.post('/getTaskbyOpportunityId',opportunityTask)
+    fastify.post('/getOpportunitiesbyInvid',inventorywithdeals)
 
 
 
@@ -50,8 +52,9 @@ function getdatafromreact(fastify, options, done) {
     fastify.post('/deleteAccount', deleteAccount)
     fastify.post('/accountsname',lookupAccount)
     fastify.post('/getTaskbyAccountId',accountTask)
+    fastify.post('/getAccountbyInventory',Inventorywithaccount)
 
-
+    
 
 
 

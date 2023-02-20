@@ -27,7 +27,7 @@ const insertAccount = async (request, reply) => {
         async function toObject(names, values) {
             for (let i = 0; i < names.length; i++)
             {
-                if (names[i] != 'propertyCities') {             
+                if (names[i] != 'billingCities') {             
                     result[names[i]] = values[i]
                 }
             }  
