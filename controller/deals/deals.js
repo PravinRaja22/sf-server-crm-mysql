@@ -13,7 +13,7 @@ const getDeals = async (request, reply) => {
             element.inventoryDetails =
                 {
                     InventoryId:element.InventoryId,
-                    inventoryName: element.InventoryName,               
+                    propertyName: element.InventoryName,               
                 },
                 element.leadDetails=
                 {
