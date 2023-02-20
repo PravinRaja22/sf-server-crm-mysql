@@ -48,7 +48,11 @@ const insertDeals = async (request, reply) => {
         async function toObject(names, values) {
             for (let i = 0; i < names.length; i++)
             {
+                if(names != inventoryDetails || names != leadDetails)
+                {
                     result[names[i]] = values[i]
+
+                }
             }
             console.log(result);
         }
