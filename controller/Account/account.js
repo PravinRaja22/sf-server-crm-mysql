@@ -5,6 +5,14 @@ const getAccount = async (request, reply) => {
     try {
         var sql = "select * from Account";
         let getAccountdata = await executeQuery(sql, [])
+     
+        getAccountdata.forEach(element => {
+            element.InventoryDetails={
+                propertyName:element.inventoryName,
+                inventoryId:element.InventoryId
+            }
+            
+        });
         reply.send(getAccountdata)
 
     }
@@ -27,7 +35,7 @@ const insertAccount = async (request, reply) => {
         async function toObject(names, values) {
             for (let i = 0; i < names.length; i++)
             {
-                if (names[i] != 'billingCities') {             
+                if (names[i] != 'billingCities' && names[i] != 'InventoryDetails') {             
                     result[names[i]] = values[i]
                 }
             }  
