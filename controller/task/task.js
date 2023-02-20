@@ -26,13 +26,12 @@ const insertTask = async (request, reply) => {
         console.log("keys are : " + objdata);
         async function toObject(names, values) {
             for (let i = 0; i < names.length; i++)
-                if (names[i] != '_id') {
                     result[names[i]] = values[i]
-                }
+                
             console.log(result);
         }
         toObject(objdata, objvalues)
-        var sql = 'INSERT INTO Task SET ?'
+        var sql = 'REPLACE INTO Task SET ?'
         // var values = {
         //     salutation: request.body.salutation,
         //     firstname: request.body.firstName,

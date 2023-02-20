@@ -61,7 +61,7 @@ function getdatafromreact(fastify, options, done) {
     fastify.post('/Task', getTask)
     fastify.post('/UpsertTask', insertTask)
     fastify.post('/deleteTask', deleteTask)
-    fastify.post('/UpdateTask', updateTask)
+   // fastify.post('/UpdateTask', updateTask)
 
 
 
