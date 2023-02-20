@@ -4,7 +4,30 @@ const getDeals = async (request, reply) => {
     console.log(request.body)
     try {
         var sql = "select * from Deals";
-        let getDealsdata = await executeQuery(sql, [])
+        let getDealsdata = await executeQuery(sql, [])  
+        
+
+        getDealsdata.forEach(element => {
+
+
+            element.inventoryDetails =
+                {
+                    InventoryId:element.InventoryId,
+                    inventoryName: element.InventoryName,               
+                },
+                element.leadDettails=
+                {
+                    leadId:element.leadId,
+                    leadName: element.leadName,   
+                }
+              
+            
+           
+         
+
+        });
+        
+
         console.log(getDealsdata);
         reply.send(getDealsdata)
     }
