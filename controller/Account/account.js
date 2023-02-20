@@ -26,16 +26,16 @@ const insertAccount = async (request, reply) => {
         console.log("keys are : " + objdata);
         async function toObject(names, values) {
             for (let i = 0; i < names.length; i++)
-               // if (names[i] != '_id') {
-
-               {
-                result[names[i]] = values[i]
-
-               }
-               // }
-            console.log(result);
+            {
+                if (names[i] != 'propertyCities') {             
+                    result[names[i]] = values[i]
+                }
+            }  
         }
         toObject(objdata, objvalues)
+
+        console.log(result);
+
         var sql = 'REPLACE INTO Account SET ?'
         // var values = {
         //     salutation: request.body.salutation,

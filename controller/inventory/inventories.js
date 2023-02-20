@@ -26,7 +26,7 @@ const insertInventories = async (request, reply) => {
         console.log("keys are : " + objdata);
         async function toObject(names, values) {
             for (let i = 0; i < names.length; i++)
-                if (names[i] != '_id') {
+                if (names[i] != 'propertyCities') {
                     result[names[i]] = values[i]
                 }
             console.log(result);
