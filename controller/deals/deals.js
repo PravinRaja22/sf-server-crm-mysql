@@ -24,13 +24,13 @@ const insertDeals = async (request, reply) => {
         console.log("keys are : " + objdata);
         async function toObject(names, values) {
             for (let i = 0; i < names.length; i++)
-                if (names[i] != '_id') {
+            {
                     result[names[i]] = values[i]
-                }
+            }
             console.log(result);
         }
         toObject(objdata, objvalues)
-        var sql = 'INSERT INTO Deals SET ?'
+        var sql = 'REPLACE INTO Deals SET ?'
         let insertDeals = await executeQuery(sql, result)
         console.log(insertDeals)
         reply.send("Deals inserted Successfully")

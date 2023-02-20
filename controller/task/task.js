@@ -72,7 +72,10 @@ const deleteTask = async (request, reply) => {
 const updateTask = async (request, reply) => {
     try {
         console.log('inside update task')
+        console.log("request from react js");
         console.log(request.body);
+        console.log("end of request from react js");
+
         let objdata = Object.keys(request.body);
         let objvalues = Object.values(request.body);
         let result = {};
@@ -80,8 +83,11 @@ const updateTask = async (request, reply) => {
         async function toObject(names, values) {
             for (let i = 0; i < names.length; i++)
                 //if (names[i] != '_id') {
-                result[names[i]] = values[i]
+                    {
+                        result[names[i]] = values[i]
+                    }
             // }
+            console.log("result ")
             console.log(result);
         }
         toObject(objdata, objvalues)
@@ -89,7 +95,8 @@ const updateTask = async (request, reply) => {
 
 
         var sql = 'update Task set subject=?, relatedTo=?, assignedTo=?,description=?, attachments=?, object=?, LeadId=?, createdbyId=?, createdDate=?, modifiedDate=?, StartDate=?,EndDate=?, leadDetails=? where _id = ' + result._id;
-        let deleteTaskResult = await executeQuery(sql, objvalues)
+        let updatetaskkResult = await executeQuery(sql, objvalues)
+        console.log("final result is : "+updatetaskkResult);
         reply.send("Data updated Successfully")
     }
     catch (err) {

@@ -30,7 +30,7 @@ function getdatafromreact(fastify, options, done) {
     fastify.post('/UpsertOpportunity', insertDeals)
     fastify.post('/deleteOpportunity', deleteDeals)
     fastify.post('/opportunitiesbyName', lookupDeals)
-fastify.post('/getTaskbyOpportunityId',opportunityTask)
+    fastify.post('/getTaskbyOpportunityId',opportunityTask)
 
 
 
@@ -40,16 +40,9 @@ fastify.post('/getTaskbyOpportunityId',opportunityTask)
     fastify.post('/deleteInventory', deleteInventories)
     fastify.post('/InventoryName',lookupInventory)
 
-
-
-
-
     fastify.post('/contacts', getContact)
     fastify.post('/UpsertContact', insertContact)
     fastify.post('/deleteContact', deleteContact)
-
-
-
 
 
     fastify.post('/accounts', getAccount)
@@ -63,10 +56,9 @@ fastify.post('/getTaskbyOpportunityId',opportunityTask)
 
 
     fastify.post('/Task', getTask)
-    fastify.post('/InsertTask', insertTask)
-    fastify.post('/deleteTask', deleteTask)
     fastify.post('/UpsertTask', insertTask)
-
+    fastify.post('/deleteTask', deleteTask)
+    fastify.post('/UpdateTask', updateTask)
 
 
 
@@ -77,10 +69,6 @@ fastify.post('/getTaskbyOpportunityId',opportunityTask)
     fastify.post('/dataloaderAccount', { preHandler: fileUpload }, dataloaderaccount)
     fastify.post('/dataloaderOpportunity', { preHandler: fileUpload }, dataloaderdeals)
     fastify.post('/dataloaderlead', { preHandler: fileUpload }, dataloaderEnquiry)
-
-
-
-
     fastify.post('/bulkemail', {preHandler: fileUpload},sendEmail )
      
 
