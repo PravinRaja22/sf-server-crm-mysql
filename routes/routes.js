@@ -18,6 +18,7 @@ const { opportunityTask } = require('../controller/task/opportunitytask')
 const { accountTask } = require('../controller/task/accounttask')
 const { inventorywithdeals } = require('../controller/deals/dealwithinventory')
 const { Inventorywithaccount } = require('../controller/Account/accountInventory')
+const { accountsContact } = require('../controller/Account/accountContacts')
 function getdatafromreact(fastify, options, done) {
 
     fastify.post('/leads', getEnquiry)
@@ -34,9 +35,6 @@ function getdatafromreact(fastify, options, done) {
     fastify.post('/getTaskbyOpportunityId',opportunityTask)
     fastify.post('/getOpportunitiesbyInvid',inventorywithdeals)
 
-
-
-
     fastify.post('/inventories', getInventories)
     fastify.post('/UpsertInventory', insertInventories)
     fastify.post('/deleteInventory', deleteInventories)
@@ -45,8 +43,8 @@ function getdatafromreact(fastify, options, done) {
     fastify.post('/contacts', getContact)
     fastify.post('/UpsertContact', insertContact)
     fastify.post('/deleteContact', deleteContact)
-
-
+    fastify.post('/getContactsbyAccountId',accountsContact)
+    
     fastify.post('/accounts', getAccount)
     fastify.post('/UpsertAccount', insertAccount)
     fastify.post('/deleteAccount', deleteAccount)
@@ -54,18 +52,10 @@ function getdatafromreact(fastify, options, done) {
     fastify.post('/getTaskbyAccountId',accountTask)
     fastify.post('/getAccountbyInventory',Inventorywithaccount)
 
-    
-
-
-
     fastify.post('/Task', getTask)
     fastify.post('/UpsertTask', insertTask)
     fastify.post('/deleteTask', deleteTask)
    // fastify.post('/UpdateTask', updateTask)
-
-
-
-
 
     fastify.post('/uploadfile', { preHandler: fileUpload }, insertFile)
     fastify.post('/generatePreview', { preHandler: fileUpload }, genaratePreview)
@@ -74,8 +64,6 @@ function getdatafromreact(fastify, options, done) {
     fastify.post('/dataloaderlead', { preHandler: fileUpload }, dataloaderEnquiry)
     fastify.post('/bulkemail', {preHandler: fileUpload},sendEmail )
      
-
-
     done()
 }
 

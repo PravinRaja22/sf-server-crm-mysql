@@ -3,7 +3,7 @@ const accountsContact = async (request, reply) => {
     console.log("inside Account with Contacts lookup");
     console.log(request.query.searchId);
     try {
-        var sql = "select * from contact a, account b where a.AccountId= b._id and a._id = " + request.query.searchId;
+        var sql = "select *,a._id from contact a, account b where a.AccountId= b._id and b._id = " + request.query.searchId;
         let getaccountscontact = await executeQuery(sql, [])
         console.log(getaccountscontact);
         reply.send(getaccountscontact)
