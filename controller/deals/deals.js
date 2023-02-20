@@ -15,7 +15,7 @@ const getDeals = async (request, reply) => {
                     InventoryId:element.InventoryId,
                     inventoryName: element.InventoryName,               
                 },
-                element.leadDettails=
+                element.leadDetails=
                 {
                     leadId:element.leadId,
                     leadName: element.leadName,   
