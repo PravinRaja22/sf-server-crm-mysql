@@ -14,7 +14,7 @@ const getTask = async (request, reply) => {
             }
 
 
-            
+
             else if (e.accountId && e.accountName) {
 
                 e.accountDetails = {
@@ -49,10 +49,12 @@ const insertTask = async (request, reply) => {
         let result = {};
         console.log("keys are : " + objdata);
         async function toObject(names, values) {
+            if (names[i] != 'leadDetails' && names[i] != 'accountDetails' && names[i] != 'opportunityDetails') {
             for (let i = 0; i < names.length; i++)
                 result[names[i]] = values[i]
 
             console.log(result);
+            }
         }
         toObject(objdata, objvalues)
         var sql = 'REPLACE INTO Task SET ?'
@@ -92,39 +94,5 @@ const deleteTask = async (request, reply) => {
     }
 }
 
-const updateTask = async (request, reply) => {
-    try {
-        console.log('inside update task')
-        console.log("request from react js");
-        console.log(request.body);
-        console.log("end of request from react js");
 
-        let objdata = Object.keys(request.body);
-        let objvalues = Object.values(request.body);
-        let result = {};
-        console.log("keys are : " + objdata);
-        async function toObject(names, values) {
-            for (let i = 0; i < names.length; i++)
-            if (names[i] != 'leadDetails' && names[i] != 'accountDetails' && names[i] != 'opportunityDetails') {
-            {
-                result[names[i]] = values[i]
-            }
-            }
-            console.log("result ")
-            console.log(result);
-        }
-        toObject(objdata, objvalues)
-
-
-
-        var sql = 'update Task set subject=?, relatedTo=?, assignedTo=?,description=?, attachments=?, object=?, LeadId=?, createdbyId=?, createdDate=?, modifiedDate=?, StartDate=?,EndDate=?, leadDetails=? where _id = ' + result._id;
-        let updatetaskkResult = await executeQuery(sql, objvalues)
-        console.log("final result is : " + updatetaskkResult);
-        reply.send("Data updated Successfully")
-    }
-    catch (err) {
-        console.log(err.message);
-        reply.send(err.message)
-    }
-}
-module.exports = { getTask, insertTask, deleteTask, updateTask }
+module.exports = { getTask, insertTask, deleteTask}
