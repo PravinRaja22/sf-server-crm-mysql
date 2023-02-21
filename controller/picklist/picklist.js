@@ -20,7 +20,7 @@ const getPicklistvalue = async (request, reply) => {
 const getPicklistname = async (request, reply) => {
     try {
         console.log("inside picklist get ");
-        var sql = "select fieldName,tableName from picklist "
+        var sql = "select Country,tableName from picklist "
         let getpicklistdata = await executeQuery(sql, [])
         function getUniqueListBy(arr, key) {
             return [...new Map(arr.map(item => [item[key], item])).values()]
