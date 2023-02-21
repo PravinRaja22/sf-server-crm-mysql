@@ -50,12 +50,10 @@ const insertTask = async (request, reply) => {
         console.log("keys are : " + objdata);
         async function toObject(names, values) {
             for (let i = 0; i < names.length; i++)
-            if (names[i] != 'leadDetails' && names[i] != 'accountDetails' && names[i] != 'opportunityDetails') {
-
-                result[names[i]] = values[i]
-
-            console.log(result);
-            }
+                if (names[i] != 'leadDetails' && names[i] != 'accountDetails' && names[i] != 'opportunityDetails') {
+                    result[names[i]] = values[i]
+                    console.log(result);
+                }
         }
         toObject(objdata, objvalues)
         var sql = 'REPLACE INTO Task SET ?'
@@ -96,4 +94,4 @@ const deleteTask = async (request, reply) => {
 }
 
 
-module.exports = { getTask, insertTask, deleteTask}
+module.exports = { getTask, insertTask, deleteTask }
