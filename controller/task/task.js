@@ -4,8 +4,29 @@ const getTask = async (request, reply) => {
     console.log(request.body)
     try {
         var sql = "select * from Task";
-        let getEnquirydata = await executeQuery(sql, [])
-        reply.send(getEnquirydata)
+        let gettaskdata = await executeQuery(sql, [])
+        gettaskdata.forEach(e =>{
+            if(e.leadId && e.leadName){
+                e.leadDetails ={
+                    id:e.leadId,
+                    leadName:e.leadName
+                }
+            }
+            else if(e.accountId && e.accountName){
+
+                e.accountDetails ={
+                    id:e.accountId,
+                    accountName:e.accountName
+                }
+            }
+            else if (e.opportunityId && e.opportunityName){
+                e.opportunityDetails ={
+                    id:e.opportunityId,
+                    leadName:e.opportunityName
+                }
+            }
+        })
+        reply.send(gettaskdata)
 
     }
     catch (err) {
