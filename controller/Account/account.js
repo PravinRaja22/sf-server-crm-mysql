@@ -10,7 +10,7 @@ const getAccount = async (request, reply) => {
             //we are adding below object to send a response to user interface
             element.InventoryDetails = {
                 propertyName: element.InventoryName,
-                inventoryId: element.InventoryId
+                id: element.InventoryId
             }
 
         });
