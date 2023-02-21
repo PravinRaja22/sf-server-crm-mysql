@@ -11,9 +11,9 @@ const enquirywithdeals = async (request, reply) => {
                 id:elements.leadId,
                 leadName:elements.leadName
             }
-            element.inventoryDetails = {
-                id:element.InventoryId,
-                propertyName : element.InventoryName
+            elements.inventoryDetails = {
+                id:elements.InventoryId,
+                propertyName : elements.InventoryName
             }
         })
         reply.send(getEnquiresdata)
