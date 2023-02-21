@@ -49,8 +49,9 @@ const insertTask = async (request, reply) => {
         let result = {};
         console.log("keys are : " + objdata);
         async function toObject(names, values) {
-            if (names[i] != 'leadDetails' && names[i] != 'accountDetails' && names[i] != 'opportunityDetails') {
             for (let i = 0; i < names.length; i++)
+            if (names[i] != 'leadDetails' && names[i] != 'accountDetails' && names[i] != 'opportunityDetails') {
+
                 result[names[i]] = values[i]
 
             console.log(result);
