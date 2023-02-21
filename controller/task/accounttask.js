@@ -6,6 +6,13 @@ const accountTask = async (request, reply) => {
         var sql = "select *,a._id from task a, account b where b._id= a.AccountId and a.AccountId = " + request.query.searchId;
         let accountTasks = await executeQuery(sql, [])
         console.log(accountTasks);
+
+        accountTasks.forEach(e =>{
+            e.accountDetails ={
+                id:e.accountId,
+                accountName:e.accountName
+            }
+        })
         reply.send(accountTasks);
     }
     catch (err) {

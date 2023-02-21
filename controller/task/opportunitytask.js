@@ -11,6 +11,12 @@ const opportunityTask = async (request, reply) => {
         let getopportunityTask = await executeQuery(sql, [])
 
         console.log(getopportunityTask);
+        getopportunityTask.forEach(e =>{
+            e.opportunityDetails ={
+                id:e.opportunityId,
+                leadName:e.opportunityName
+            }
+        })
         reply.send(getopportunityTask)
 
     }

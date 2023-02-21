@@ -7,7 +7,7 @@ const accountsContact = async (request, reply) => {
         let getaccountscontact = await executeQuery(sql, [])
         console.log(getaccountscontact);
 
-        getaccountscontact.forEach(element => {
+        getaccountscontact.forEach(element=>{
             element.accountDetails = {
                 accountName: element.AccountName,
                 id: element.AccountId
