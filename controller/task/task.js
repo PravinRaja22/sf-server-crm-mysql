@@ -5,24 +5,24 @@ const getTask = async (request, reply) => {
     try {
         var sql = "select * from Task";
         let gettaskdata = await executeQuery(sql, [])
-        gettaskdata.forEach(e =>{
-            if(e.leadId && e.leadName){
-                e.leadDetails ={
-                    id:e.leadId,
-                    leadName:e.leadName
+        gettaskdata.forEach(e => {
+            if (e.leadId && e.leadName) {
+                e.leadDetails = {
+                    id: e.leadId,
+                    leadName: e.leadName
                 }
             }
-            else if(e.accountId && e.accountName){
+            else if (e.accountId && e.accountName) {
 
-                e.accountDetails ={
-                    id:e.accountId,
-                    accountName:e.accountName
+                e.accountDetails = {
+                    id: e.accountId,
+                    accountName: e.accountName
                 }
             }
-            else if (e.opportunityId && e.opportunityName){
-                e.opportunityDetails ={
-                    id:e.opportunityId,
-                    opportunityName:e.opportunityName
+            else if (e.opportunityId && e.opportunityName) {
+                e.opportunityDetails = {
+                    id: e.opportunityId,
+                    opportunityName: e.opportunityName
                 }
             }
         })
@@ -47,8 +47,8 @@ const insertTask = async (request, reply) => {
         console.log("keys are : " + objdata);
         async function toObject(names, values) {
             for (let i = 0; i < names.length; i++)
-                    result[names[i]] = values[i]
-                
+                result[names[i]] = values[i]
+
             console.log(result);
         }
         toObject(objdata, objvalues)
@@ -102,11 +102,11 @@ const updateTask = async (request, reply) => {
         console.log("keys are : " + objdata);
         async function toObject(names, values) {
             for (let i = 0; i < names.length; i++)
-                //if (names[i] != '_id') {
-                    {
-                        result[names[i]] = values[i]
-                    }
-            // }
+            if (names[i] != 'leadDetails' && names[i] != 'accountDetails' && names[i] != 'opportunityDetails') {
+            {
+                result[names[i]] = values[i]
+            }
+            }
             console.log("result ")
             console.log(result);
         }
@@ -116,7 +116,7 @@ const updateTask = async (request, reply) => {
 
         var sql = 'update Task set subject=?, relatedTo=?, assignedTo=?,description=?, attachments=?, object=?, LeadId=?, createdbyId=?, createdDate=?, modifiedDate=?, StartDate=?,EndDate=?, leadDetails=? where _id = ' + result._id;
         let updatetaskkResult = await executeQuery(sql, objvalues)
-        console.log("final result is : "+updatetaskkResult);
+        console.log("final result is : " + updatetaskkResult);
         reply.send("Data updated Successfully")
     }
     catch (err) {
