@@ -3,9 +3,16 @@ const enquirywithdeals = async (request, reply) => {
     console.log("inside enquiry with deals lookup");
     console.log(request.query.searchId);
     try {
-        var sql = "select a.* from enquiry a, deals b where a._id= b.leadId and a._id = " + request.query.searchId;
+        var sql = "select b.* from enquiry a, deals b where a._id= b.leadId and a._id = " + request.query.searchId;
         let getEnquiresdata = await executeQuery(sql, [])
         console.log(getEnquiresdata);
+        getEnquiresdata.forEach(elements => {
+            elements.leadDetails ={
+                id:elements.leadId,
+                leadName:elements.leadName
+            }
+
+        })
         reply.send(getEnquiresdata)
     }
     catch (err) {
