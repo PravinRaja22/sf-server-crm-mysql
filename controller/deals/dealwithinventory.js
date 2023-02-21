@@ -8,14 +8,14 @@ const inventorywithdeals = async (request, reply) => {
 
         let getDealsdata = await executeQuery(sql, [])
         console.log(getDealsdata);
-        getDealsdata.foreach(element => {
+        getDealsdata.forEach(element => {
             element.inventoryDetails = {
                 id:element.InventoryId,
                 propertyName : element.InventoryName
             }
             element.leadDetails = {
                 id:element.leadId,
-                leadName : element.leadNAme
+                leadName : element.leadName
             }
         })
         reply.send(getDealsdata)
