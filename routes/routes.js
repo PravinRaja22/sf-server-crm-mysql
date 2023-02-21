@@ -66,8 +66,8 @@ function getdatafromreact(fastify, options, done) {
     fastify.post('/bulkemail', { preHandler: fileUpload }, sendEmail)
 
 
-    fastify.post('/getpicklistname', getPicklistname)
-    fastify.post('/getpicklistvalue', getPicklistvalue)
+    fastify.post('/getpicklistcountry', getPicklistname)
+    fastify.post('/getpickliststate', getPicklistvalue)
     done()
 }
 

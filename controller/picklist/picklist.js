@@ -5,10 +5,10 @@ const getPicklistvalue = async (request, reply) => {
         console.log(request.query.data);
         console.log(request.query.table);
       //  var sql = "select * from picklist where  fieldName = " + request.query.data+" and tableName = "+request.query.tablename
-        let sql = 'SELECT * FROM picklist WHERE fieldName = ? AND tableName = ?';
+        let sql = 'SELECT * FROM picklist WHERE Country = ? AND State = ?';
        // let sql = 'SELECT * FROM picklist';
 
-        let values = [request.query.data, request.query.table]
+        let values = [request.query.country, request.query.table]
         let getpicklistdata = await executeQuery(sql,values)
         reply.send(getpicklistdata)
     } catch (error) {
@@ -25,7 +25,7 @@ const getPicklistname = async (request, reply) => {
         function getUniqueListBy(arr, key) {
             return [...new Map(arr.map(item => [item[key], item])).values()]
         }
-        const arr2 = getUniqueListBy(getpicklistdata, 'fieldName')
+        const arr2 = getUniqueListBy(getpicklistdata, 'Country')
         let uniqueValue = arr2
 
         reply.send(uniqueValue)
