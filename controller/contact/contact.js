@@ -6,6 +6,14 @@ const getContact = async (request, reply) => {
         var sql = "select * from contact";
         let getContactdata = await executeQuery(sql, [])
         console.log(getContactdata);
+        getContactdata.forEach(element => {
+            //we are adding below object to send a response to user interface
+            element.accountDetails = {
+                accountName: element.AccountName,
+                id: element.AccountId
+            }
+
+        });
         reply.send(getContactdata)
 
     }
@@ -27,12 +35,12 @@ const insertContact = async (request, reply) => {
         console.log("keys are : " + objdata);
         async function toObject(names, values) {
             for (let i = 0; i < names.length; i++)
-               // if (names[i] != '_id') {
+             if (names[i] != 'accountDetails') {
                 {
                     result[names[i]] = values[i]
 
                 }
-              //  }
+              }
             console.log(result);
         }
         toObject(objdata, objvalues)
