@@ -2,8 +2,14 @@ const { executeQuery } = require('../../db/mySql')
 const getPicklistvalue = async (request, reply) => {
     try {
         console.log("inside picklist get ");
-        var sql = "select * from picklist where  fieldName = " + request.query.data
-        let getpicklistdata = await executeQuery(sql, [])
+        console.log(request.query.data);
+        console.log(request.query.table);
+      //  var sql = "select * from picklist where  fieldName = " + request.query.data+" and tableName = "+request.query.tablename
+        let sql = 'SELECT * FROM picklist WHERE fieldName = ? AND tableName = ?';
+       // let sql = 'SELECT * FROM picklist';
+
+        let values = [request.query.data, request.query.table]
+        let getpicklistdata = await executeQuery(sql,values)
         reply.send(getpicklistdata)
     } catch (error) {
         console.log("inside picklist get error");
