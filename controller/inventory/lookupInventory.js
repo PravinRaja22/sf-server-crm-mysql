@@ -5,8 +5,18 @@ const lookupInventory = async (request, reply) => {
         try {
             console.log("inside inventory lookup ");
             var sql = "select _id,propertyName from Inventory limit 5";
-            let getEnquirydata = await executeQuery(sql, [])
-            reply.send(getEnquirydata)
+            let inventoryName =[]
+
+            let getInventorydata = await executeQuery(sql, [])
+            getInventorydata.forEach(element =>{
+                inventoryName.push({
+                    inventoryName: element.propertyName,
+                    id: element._id
+                })
+
+            })
+            
+            reply.send(inventoryName)
         }
         catch (err) {
             console.log("inside inventory loopup error page");
@@ -18,8 +28,16 @@ const lookupInventory = async (request, reply) => {
 
                 console.log("inside inventory lookup ");
                 var sql = "select _id,propertyName from Inventory  WHERE propertyName like '%" + request.query.searchKey + "%'";
-                let getEnquirydata = await executeQuery(sql, [])
-                reply.send(getEnquirydata)
+                let getInventorydata = await executeQuery(sql, [])
+                let inventoryName =[]
+                getInventorydata.forEach(element =>{
+                    inventoryName.push({
+                        inventoryName: element.propertyName,
+                        id: element._id
+                    })
+
+                })
+                reply.send(inventoryName)
 
             }
             catch (err) {
