@@ -7,7 +7,7 @@ const opportunityTask = async (request, reply) => {
     console.log(request.query.searchId);
 
     try {
-        var sql = "select a.*from task a, deals b where b._id= a.OpportunityId and a.OpportunityId = " + request.query.searchId;
+        var sql = "select a.* from task a, deals b where b._id= a.OpportunityId and a.OpportunityId = " + request.query.searchId;
         let getopportunityTask = await executeQuery(sql, [])
 
         console.log(getopportunityTask);
