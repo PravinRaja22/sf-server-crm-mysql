@@ -5,13 +5,14 @@ const getAccount = async (request, reply) => {
     try {
         var sql = "select * from Account";
         let getAccountdata = await executeQuery(sql, [])
-     
+
         getAccountdata.forEach(element => {
-            element.InventoryDetails={
-                propertyName:element.inventoryName,
-                inventoryId:element.InventoryId
+            //we are adding below object to send a response to user interface
+            element.InventoryDetails = {
+                propertyName: element.InventoryName,
+                inventoryId: element.InventoryId
             }
-            
+
         });
         reply.send(getAccountdata)
 
@@ -24,7 +25,7 @@ const getAccount = async (request, reply) => {
 
 }
 
-const insertAccount = async (request, reply) => {
+const upsertAccount = async (request, reply) => {
     try {
         console.log("inside insert Account");
         console.log(request.body);
@@ -33,12 +34,11 @@ const insertAccount = async (request, reply) => {
         let result = {};
         console.log("keys are : " + objdata);
         async function toObject(names, values) {
-            for (let i = 0; i < names.length; i++)
-            {
-                if (names[i] != 'billingCities' && names[i] != 'InventoryDetails') {             
+            for (let i = 0; i < names.length; i++) {
+                if (names[i] != 'billingCities' && names[i] != 'inventoryDetails') {
                     result[names[i]] = values[i]
                 }
-            }  
+            }
         }
         toObject(objdata, objvalues)
 
@@ -50,7 +50,7 @@ const insertAccount = async (request, reply) => {
         //     firstname: request.body.firstName,
         //     Phone: request.body.phone,
         // }
-       // console.log(values);
+        // console.log(values);
 
         let insertAccount = await executeQuery(sql, result)
         console.log(insertAccount)
@@ -81,15 +81,5 @@ const deleteAccount = async (request, reply) => {
 }
 
 
-const updateAccount = async (request,reply)=>{
-    try{
-   console.log('inside update account')
 
-    }
-    catch(e){
-
-    }
-}
-
-
-module.exports = { getAccount, insertAccount, deleteAccount }
+module.exports = { getAccount, upsertAccount, deleteAccount }

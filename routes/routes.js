@@ -2,7 +2,7 @@ const { getEnquiry, insertEnquiry, deleteEnquiry } = require('../controller/enqu
 const { getDeals, insertDeals, deleteDeals } = require('../controller/deals/deals')
 const { getInventories, insertInventories, deleteInventories } = require('../controller/inventory/inventories')
 const { getContact, insertContact, deleteContact } = require('../controller/contact/contact')
-const { getAccount, insertAccount, deleteAccount } = require('../controller/Account/account.js')
+const { getAccount, upsertAccount, deleteAccount } = require('../controller/Account/account.js')
 const { getTask, insertTask, deleteTask, updateTask } = require('../controller/task/task')
 const { fileUpload, Multer } = require('../uploader/multer')
 const { insertFile } = require('../controller/fileupload/fileupload')
@@ -46,7 +46,7 @@ function getdatafromreact(fastify, options, done) {
     fastify.post('/getContactsbyAccountId',accountsContact)
     
     fastify.post('/accounts', getAccount)
-    fastify.post('/UpsertAccount', insertAccount)
+    fastify.post('/UpsertAccount', upsertAccount)
     fastify.post('/deleteAccount', deleteAccount)
     fastify.post('/accountsname',lookupAccount)
     fastify.post('/getTaskbyAccountId',accountTask)

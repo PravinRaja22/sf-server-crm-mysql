@@ -4,29 +4,21 @@ const getDeals = async (request, reply) => {
     console.log(request.body)
     try {
         var sql = "select * from Deals";
-        let getDealsdata = await executeQuery(sql, [])  
-        
-
+        let getDealsdata = await executeQuery(sql, [])
         getDealsdata.forEach(element => {
-
-
+            //adding new object to specify id and name in a single set(used to display the data in the userinterface)
             element.inventoryDetails =
                 {
-                    InventoryId:element.InventoryId,
-                    propertyName: element.InventoryName,               
+                InventoryId: element.InventoryId,
+                propertyName: element.InventoryName,
                 },
-                element.leadDetails=
+            element.leadDetails =
                 {
-                    leadId:element.leadId,
-                    leadName: element.leadName,   
+                leadId: element.leadId,
+                leadName: element.leadName,
                 }
-              
-            
-           
-         
-
         });
-        
+
 
         console.log(getDealsdata);
         reply.send(getDealsdata)
@@ -46,11 +38,11 @@ const insertDeals = async (request, reply) => {
         let result = {};
         console.log("keys are : " + objdata);
         async function toObject(names, values) {
-            for (let i = 0; i < names.length; i++)
-            {
+            for (let i = 0; i < names.length; i++) {
                 console.log(names);
-                 if(names[i] != 'inventoryDetails' && names[i] != 'leadDetails')
-                {
+                //since both the inventory details and lead details are object  we coudn't able to save this in mysql database
+                //so we are eliminating both of object when inserting in the db
+                if (names[i] != 'inventoryDetails' && names[i] != 'leadDetails') {
                     result[names[i]] = values[i]
 
                 }
@@ -74,6 +66,7 @@ const deleteDeals = async (request, reply) => {
     try {
         console.log('query:', request.query.code);
         let deleteDealsdata = request.query.code
+        //deleteing the record based on record id
         var sql = 'DELETE FROM Deals WHERE _id = ' + deleteDealsdata;
         let deleteDealsResult = await executeQuery(sql, [])
         reply.send("Data Deleted Successfully")

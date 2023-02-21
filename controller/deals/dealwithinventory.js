@@ -3,11 +3,21 @@ const inventorywithdeals = async (request, reply) => {
     console.log("inside inventory with deals lookup");
     console.log(request.query.searchId);
     try {
-       // var sql = "select * from deals a, inventory b where a.InventoryId= b._id and b._id = " + request.query.searchId;
-        var sql = "select *,a._id from deals a, inventory b where a.InventoryId= b._id and b._id = "+ request.query.searchId;
+        // var sql = "select * from deals a, inventory b where a.InventoryId= b._id and b._id = " + request.query.searchId;
+        var sql = "select *,a._id from deals a, inventory b where a.InventoryId= b._id and b._id = " + request.query.searchId;
 
         let getDealsdata = await executeQuery(sql, [])
         console.log(getDealsdata);
+        getDealsdata.foreach(element => {
+            element.inventoryDetails = {
+                id:element.InventoryId,
+                propertyName : element.InventoryName
+            }
+            element.leadDetails = {
+                id:element.leadId,
+                leadName : element.leadNAme
+            }
+        })
         reply.send(getDealsdata)
     }
     catch (err) {
