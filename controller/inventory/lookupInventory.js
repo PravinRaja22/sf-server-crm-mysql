@@ -9,8 +9,8 @@ const lookupInventory = async (request, reply) => {
 
             let getInventorydata = await executeQuery(sql, [])
             getInventorydata.forEach(element =>{
-                propertyName.push({
-                    inventoryName: element.propertyName,
+                inventoryName.push({
+                    propertyName: element.propertyName,
                     id: element._id
                 })
 
@@ -31,8 +31,8 @@ const lookupInventory = async (request, reply) => {
                 let getInventorydata = await executeQuery(sql, [])
                 let inventoryName =[]
                 getInventorydata.forEach(element =>{
-                    propertyName.push({
-                        inventoryName: element.propertyName,
+                    inventoryName.push({
+                        propertyName: element.propertyName,
                         id: element._id
                     })
 
