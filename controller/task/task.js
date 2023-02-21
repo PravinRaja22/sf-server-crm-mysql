@@ -22,7 +22,7 @@ const getTask = async (request, reply) => {
             else if (e.opportunityId && e.opportunityName){
                 e.opportunityDetails ={
                     id:e.opportunityId,
-                    leadName:e.opportunityName
+                    opportunityName:e.opportunityName
                 }
             }
         })

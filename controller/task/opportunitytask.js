@@ -14,7 +14,7 @@ const opportunityTask = async (request, reply) => {
         getopportunityTask.forEach(e =>{
             e.opportunityDetails ={
                 id:e.opportunityId,
-                leadName:e.opportunityName
+                opportunityName:e.opportunityName
             }
         })
         reply.send(getopportunityTask)
