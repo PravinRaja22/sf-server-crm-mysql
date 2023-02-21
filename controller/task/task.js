@@ -12,6 +12,9 @@ const getTask = async (request, reply) => {
                     leadName: e.leadName
                 }
             }
+
+
+            
             else if (e.accountId && e.accountName) {
 
                 e.accountDetails = {
