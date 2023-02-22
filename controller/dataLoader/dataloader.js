@@ -109,8 +109,8 @@ const dataloaderdeals = async (request, reply) => {
                 toObject(objdata, objvalues)
                 var sql = 'INSERT INTO deals SET ?'
                 console.log(result);
-                result.forEach(element => {
-                    let insertAccount = executeQuery(sql, element)
+                result.forEach(element ,async () => {
+                    let insertAccount =await executeQuery(sql, element)
                     console.log(insertAccount);
                     reply.send("Deals Inserted Successfully")
                 });
