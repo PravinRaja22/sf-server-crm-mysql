@@ -13,7 +13,7 @@ const getEnquiry = async (request, reply) => {
     }
 }
 
-const insertEnquiry = async (request, reply) => {
+const upsertEnquiry = async (request, reply) => {
     try {
         console.log("inside insert Enquiry");
         console.log("test enquiry ");
@@ -55,4 +55,4 @@ const deleteEnquiry = async (request, reply) => {
         reply.send(err.message)
     }
 }
-module.exports = { getEnquiry, insertEnquiry, deleteEnquiry }
+module.exports = { getEnquiry, upsertEnquiry, deleteEnquiry }

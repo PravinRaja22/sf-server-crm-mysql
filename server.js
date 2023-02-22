@@ -8,7 +8,9 @@ fastify.register(require('@fastify/static'),{
 })
 
 const Multer = require('fastify-multer');
+
 console.log(path.join(__dirname,'./uploads'));
+
 fastify.register(Multer.contentParser);
 
 

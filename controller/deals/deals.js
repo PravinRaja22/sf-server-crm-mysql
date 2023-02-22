@@ -29,7 +29,7 @@ const getDeals = async (request, reply) => {
     }
 }
 
-const insertDeals = async (request, reply) => {
+const upsertDeals = async (request, reply) => {
     try {
         console.log("inside insert Deals");
         console.log(request.body);
@@ -76,4 +76,4 @@ const deleteDeals = async (request, reply) => {
         reply.send(err.message)
     }
 }
-module.exports = { getDeals, insertDeals, deleteDeals }
+module.exports = { getDeals, upsertDeals, deleteDeals }

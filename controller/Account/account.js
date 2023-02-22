@@ -5,22 +5,18 @@ const getAccount = async (request, reply) => {
     try {
         var sql = "select * from Account";
         let getAccountdata = await executeQuery(sql, [])
-
         getAccountdata.forEach(element => {
             //we are adding below object to send a response to user interface
             element.InventoryDetails = {
                 propertyName: element.InventoryName,
                 id: element.InventoryId
             }
-
         });
         reply.send(getAccountdata)
-
     }
     catch (err) {
         console.log('error in Accounts get')
         reply.send(err.message)
-
     }
 
 }
@@ -41,17 +37,8 @@ const upsertAccount = async (request, reply) => {
             }
         }
         toObject(objdata, objvalues)
-
         console.log(result);
-
         var sql = 'REPLACE INTO Account SET ?'
-        // var values = {
-        //     salutation: request.body.salutation,
-        //     firstname: request.body.firstName,
-        //     Phone: request.body.phone,
-        // }
-        // console.log(values);
-
         let insertAccount = await executeQuery(sql, result)
         console.log(insertAccount)
         reply.send("Account inserted Successfully")
@@ -60,7 +47,6 @@ const upsertAccount = async (request, reply) => {
         console.log('error in Account insertion ');
         reply.send(err.message)
     }
-
 }
 
 const deleteAccount = async (request, reply) => {

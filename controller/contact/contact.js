@@ -25,7 +25,7 @@ const getContact = async (request, reply) => {
 
 }
 
-const insertContact = async (request, reply) => {
+const upsertContact = async (request, reply) => {
     try {
         console.log("inside insert contact");
         console.log(request.body);
@@ -81,4 +81,4 @@ const deleteContact = async (request, reply) => {
         reply.send(err.message)
     }
 }
-module.exports = {getContact,insertContact,deleteContact}
+module.exports = {getContact,upsertContact,deleteContact}

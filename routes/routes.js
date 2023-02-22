@@ -1,9 +1,9 @@
-const { getEnquiry, insertEnquiry, deleteEnquiry } = require('../controller/enquiry/enquiry')
-const { getDeals, insertDeals, deleteDeals } = require('../controller/deals/deals')
-const { getInventories, insertInventories, deleteInventories } = require('../controller/inventory/inventories')
-const { getContact, insertContact, deleteContact } = require('../controller/contact/contact')
+const { getEnquiry, upsertEnquiry, deleteEnquiry } = require('../controller/enquiry/enquiry')
+const { getDeals, upsertDeals, deleteDeals } = require('../controller/deals/deals')
+const { getInventories, upsertInventories, deleteInventories } = require('../controller/inventory/inventories')
+const { getContact, upsertContact, deleteContact } = require('../controller/contact/contact')
 const { getAccount, upsertAccount, deleteAccount } = require('../controller/Account/account.js')
-const { getTask, insertTask, deleteTask, updateTask } = require('../controller/task/task')
+const { getTask, upsertTask, deleteTask } = require('../controller/task/task')
 const { fileUpload, Multer } = require('../uploader/multer')
 const { insertFile } = require('../controller/fileupload/fileupload')
 const { genaratePreview, dataloaderaccount, dataloaderdeals, dataloaderEnquiry } = require('../controller/dataLoader/dataloader')
@@ -23,26 +23,26 @@ const { getPicklistvalue, getPicklistname } = require('../controller/picklist/pi
 function getdatafromreact(fastify, options, done) {
 
     fastify.post('/leads', getEnquiry)
-    fastify.post('/UpsertLead', insertEnquiry)
+    fastify.post('/UpsertLead', upsertEnquiry)
     fastify.post('/deleteLead', deleteEnquiry)
     fastify.post('/LeadsbyName', lookupEnquiry)
     fastify.post('/getLeadsbyOppid', enquirywithdeals)
     fastify.post('/getTaskbyLeadId', leadTask)
 
     fastify.post('/opportunities', getDeals)
-    fastify.post('/UpsertOpportunity', insertDeals)
+    fastify.post('/UpsertOpportunity', upsertDeals)
     fastify.post('/deleteOpportunity', deleteDeals)
     fastify.post('/opportunitiesbyName', lookupDeals)
     fastify.post('/getTaskbyOpportunityId', opportunityTask)
     fastify.post('/getOpportunitiesbyInvid', inventorywithdeals)
 
     fastify.post('/inventories', getInventories)
-    fastify.post('/UpsertInventory', insertInventories)
+    fastify.post('/UpsertInventory', upsertInventories)
     fastify.post('/deleteInventory', deleteInventories)
     fastify.post('/InventoryName', lookupInventory)
 
     fastify.post('/contacts', getContact)
-    fastify.post('/UpsertContact', insertContact)
+    fastify.post('/UpsertContact', upsertContact)
     fastify.post('/deleteContact', deleteContact)
     fastify.post('/getContactsbyAccountId', accountsContact)
 
@@ -54,7 +54,7 @@ function getdatafromreact(fastify, options, done) {
     fastify.post('/getAccountbyInventory', Inventorywithaccount)
 
     fastify.post('/Task', getTask)
-    fastify.post('/UpsertTask', insertTask)
+    fastify.post('/UpsertTask', upsertTask)
     fastify.post('/deleteTask', deleteTask)
     // fastify.post('/UpdateTask', updateTask)
 

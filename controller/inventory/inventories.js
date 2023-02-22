@@ -16,7 +16,7 @@ const getInventories = async (request, reply) => {
 
 }
 
-const insertInventories = async (request, reply) => {
+const upsertInventories = async (request, reply) => {
     try {
         console.log("inside insert Inventories");
         console.log(request.body);
@@ -70,4 +70,4 @@ const deleteInventories = async (request, reply) => {
         reply.send(err.message)
     }
 }
-module.exports = {getInventories,insertInventories,deleteInventories}
+module.exports = {getInventories,upsertInventories,deleteInventories}

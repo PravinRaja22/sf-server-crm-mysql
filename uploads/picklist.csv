@@ -1,0 +1,37 @@
+tableName,Country,City
+Inventory,India,Hyderabad
+Inventory,India,Bangalore
+Inventory,India,Chennai
+Inventory,India,Mysore
+Inventory,India,Kochi
+Inventory,India,Kolkata
+Inventory,India,Nagpur
+Inventory,India,Delhi
+Inventory,India,Rajastan
+Inventory,India,Visakapatnam
+Inventory,India,Mumbai
+Account,India,Hyderabad
+Account,India,Bangalore
+Account,India,Chennai
+Account,India,Mysore
+Account,India,Kochi
+Account,India,Kolkata
+Account,India,Nagpur
+Account,India,Delhi
+Account,India,Rajastan
+Account,India,Visakapatnam
+Account,India,Mumbai
+Inventory,saudi arabia,Riyadh
+Inventory,saudi arabia,Jeddah
+Inventory,saudi arabia,Medina
+Inventory,saudi arabia,Khobar
+Inventory,saudi arabia,Tabuk
+Inventory,saudi arabia,Hofuf
+Inventory,saudi arabia,Ras Tanura
+Account,saudi arabia,Riyadh
+Account,saudi arabia,Jeddah
+Account,saudi arabia,Medina
+Account,saudi arabia,Khobar
+Account,saudi arabia,Tabuk
+Account,saudi arabia,Hofuf
+Account,saudi arabia,Ras Tanura

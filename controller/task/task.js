@@ -40,7 +40,7 @@ const getTask = async (request, reply) => {
 
 }
 
-const insertTask = async (request, reply) => {
+const upsertTask = async (request, reply) => {
     try {
         console.log("inside insert Task");
         console.log(request.body);
@@ -94,4 +94,4 @@ const deleteTask = async (request, reply) => {
 }
 
 
-module.exports = { getTask, insertTask, deleteTask }
+module.exports = { getTask, upsertTask, deleteTask }
