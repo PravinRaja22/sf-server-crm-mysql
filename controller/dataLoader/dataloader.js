@@ -92,7 +92,18 @@ const dataloaderdeals = async (request, reply) => {
                 console.log("someDate : ", someDate1)
                 jsonobj.forEach((variable) => {
                     variable.createdDate = someDate1;
-                    variable.modifiedDate = someDate1
+                    variable.modifiedDate = someDate1;
+                    if(variable.closeDate){
+                        console.log('closed date is : '+variable.closeDate);
+                        let d = new Date(variable.closeDate);
+                        const closedatefromat = [d.getMonth() + 1, d.getDate(), d.getFullYear()].join('/') + ' ' + [d.getHours(), d.getMinutes()].join(':')
+                        var epochtime = new Date(closedatefromat);
+                        console.log("someDate : ", epochtime) //getting error like Invalid Date
+                        epochtime1 = epochtime.getTime();
+                        console.log("someDate : ", epochtime1);
+                        variable.closeDate=epochtime1;
+                    }
+
                 })
                 console.log(jsonobj);
                 let objvalues = Object.values(jsonobj);
@@ -108,12 +119,17 @@ const dataloaderdeals = async (request, reply) => {
                 }
                 toObject(objdata, objvalues)
                 var sql = 'INSERT INTO deals SET ?'
-                console.log(result);
-                result.forEach(element ,async () => {
-                    let insertAccount =await executeQuery(sql, element)
-                    console.log(insertAccount);
-                    reply.send("Deals Inserted Successfully")
-                });
+                console.log('size of the result is : '+result.length);
+                let count=0;
+                let insertAccount =  executeQuery(sql, result)
+                console.log(insertAccount);
+                // result.forEach(element  => {
+                //     count++
+                //     console.log("count inside the forloop is : "+count);
+                //     let insertAccount =  executeQuery(sql, element)
+                //     console.log(insertAccount);
+                //     reply.send("Deals Inserted Successfully")
+                // });
             })
     } catch (error) {
         console.log("error in deals data loader");
