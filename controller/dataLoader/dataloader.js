@@ -121,8 +121,8 @@ const dataloaderdeals = async (request, reply) => {
                 var sql = 'INSERT INTO deals SET ?'
                 console.log('size of the result is : '+result.length);
                 let count=0;
-                let insertAccount =  executeQuery(sql, result)
-                console.log(insertAccount);
+               let insertAccount =  executeQuery(sql, result)
+               console.log(insertAccount);
                 // result.forEach(element  => {
                 //     count++
                 //     console.log("count inside the forloop is : "+count);
