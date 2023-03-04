@@ -15,56 +15,14 @@ pool.getConnection((err) => {
   }
 })
 
-const executeQuery = (query, arrayparams) => {
+const executeQuery = (query, arrayparams,result) => {
   console.log("query is : " + query);
-  //console.log(arrayparams)
-  let successCount = 0
-  let errorCount = 0
+  if(result){
+    console.log("result is >>>>"+JSON.stringify(result));
 
-  arrayparams.forEach(element => {
+  }
+  
 
-    let objfinal = []
-    for (let [fieldName, value] of Object.entries(element)) {
-     // console.log("fieldName is : " + fieldName);
-//console.log("Value is : " + value);
-      let initialcount = Object.keys(element).length
-     // console.log("initial count of the object is >>>" + initialcount);
-      if(!isNaN(value) || value !=null){
-        console.log(fieldName);
-        console.log(value);
-      }
-    }
-
-    console.log("answer is ");
-    console.log(objfinal);
-  });
-  // if(key == 'closeDate'){
-  //   console.log('Key is :'+key);
-  //   console.log("value is : "+value)
-  //   console.log("value is not a Number: "+isNaN(value))
-
-  // }
-
-
-  // if (!isNaN(key)) {
-  //   console.log("inside valid data part");
-  //   successcount++
-  //   console.log(obj)
-  // }
-  // else if (obj[value] == "NaN") {
-  //   console.log("inside invalid data part");
-  //   errorcount++
-  //   console.log(value)
-
-  // }
-  // }
-
-  //  console.log("success Count is : "+successcount );
-
-
-  console.log("success count is  " + successCount + " and error count is : " + errorCount);
-  let errorcount = 0;
-  let successcount = 0;
   return new Promise((resolve, reject) => {
     try {
       pool.query(query, arrayparams, (err, data) => {
@@ -76,11 +34,9 @@ const executeQuery = (query, arrayparams) => {
           return (err)
         }
         else {
-          successcount++
 
           resolve(data)
         }
-        console.log(successcount + ' err ' + errorcount);
 
       })
     }
