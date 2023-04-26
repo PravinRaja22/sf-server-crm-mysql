@@ -1,4 +1,4 @@
-const { getEnquiry, upsertEnquiry, deleteEnquiry } = require('../controller/enquiry/enquiry')
+const { getEnquiry, upsertEnquiry, deleteEnquiry} = require('../controller/enquiry/enquiry')
 const { getDeals, upsertDeals, deleteDeals } = require('../controller/deals/deals')
 const { getInventories, upsertInventories, deleteInventories } = require('../controller/inventory/inventories')
 const { getContact, upsertContact, deleteContact } = require('../controller/contact/contact')
@@ -20,7 +20,24 @@ const { inventorywithdeals } = require('../controller/deals/dealwithinventory')
 const { Inventorywithaccount } = require('../controller/Account/accountInventory')
 const { accountsContact } = require('../controller/Account/accountContacts')
 const { getPicklistvalue, getPicklistname } = require('../controller/picklist/picklist')
+const {getUser,upsertUsers,deleteUser,getSingleUser,getSignUpPageUser} = require('../controller/user/user')
+const {otpEmail} = require('../controller/Email/otpEmail')
 function getdatafromreact(fastify, options, done) {
+
+    fastify.post("/generateOTP", otpEmail)
+    fastify.post('/signin',getSingleUser)
+
+    fastify.post('/signup',upsertUsers )
+    fastify.post('/UpsertUser',upsertUsers )
+    fastify.post('/delete',deleteUser )
+    fastify.post('/Users',getUser )
+
+    fastify.post('checkSignUpUser',getSignUpPageUser)
+
+fastify.get('/',async(request,reply)=>{
+    reply.send("testpage")
+})
+
 
     fastify.post('/leads', getEnquiry)
     fastify.post('/UpsertLead', upsertEnquiry)
