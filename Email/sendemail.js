@@ -8,8 +8,8 @@ async function sendEmail(request, reply) {
         console.log(request.body);
         console.log("after bulk  email list is ");
         let subject = request.body.subject;
-        let content = request.body.content;
-        let toEmailId = request.body.toEmailId
+        let content = request.body.htmlbody;
+        let toEmailId = request.body.emailId
         console.log('Email id is : ' + toEmailId);
         console.log('Subject is : ' + subject);
         console.log('Body is : ' + content);
