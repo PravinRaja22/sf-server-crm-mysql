@@ -26,14 +26,18 @@ const upsertUsers = async (request, reply) => {
         console.log("inside insert Users");
         console.log("test User ");
         console.log(request.body);
-        const hashedPassword = await hashGenerate(request.password)
+    
+        const hashedPassword = await hashGenerate(request.body.password)
         console.log("hashed password is " + hashedPassword);
-        request.password = hashedPassword
+        request.body.password = hashedPassword
+        console.log(request.body.password)
+        console.log(request.body)
         let objdata = Object.keys(request.body);
         let objvalues = Object.values(request.body);
         let result = {};
         async function toObject(names, values) {
             for (let i = 0; i < names.length; i++) {
+                console.log(names[i]+': '+values[i])
                 result[names[i]] = values[i]
             }
 
@@ -74,6 +78,7 @@ async function getSingleUser(request, reply) {
     try {
         let sql = "select * from User where userName like '%"+request.body.userName+"%'";
         let existingUser = await executeQuery(sql, []);
+        console.log(existingUser)
         if (!existingUser) {
             console.log("inside not the existing user");
             reply.send({
@@ -84,8 +89,10 @@ async function getSingleUser(request, reply) {
         }
 
         else {
-            let checkkpassword = await hashValidator(request.body.password, existingUser.password)
-            console.log(checkkpassword)
+            console.log("isnide else of the get single user ",request.body)
+            console.log(existingUser[0].password)
+            let checkkpassword = await hashValidator(request.body.password, existingUser[0].password)
+            console.log("checking password is "+checkkpassword)
             if (!checkkpassword) {
                 reply.send({
                     status: "failure",
