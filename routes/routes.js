@@ -26,7 +26,6 @@ function getdatafromreact(fastify, options, done) {
 
     fastify.post("/generateOTP", otpEmail)
     fastify.post('/signin',getSingleUser)
-
     fastify.post('/signup',upsertUsers )
     fastify.post('/UpsertUser',upsertUsers )
     fastify.post('/delete',deleteUser )
@@ -45,24 +44,20 @@ fastify.get('/',async(request,reply)=>{
     fastify.post('/LeadsbyName', lookupEnquiry)
     fastify.post('/getLeadsbyOppid', enquirywithdeals)
     fastify.post('/getTaskbyLeadId', leadTask)
-
     fastify.post('/opportunities', getDeals)
     fastify.post('/UpsertOpportunity', upsertDeals)
     fastify.post('/deleteOpportunity', deleteDeals)
     fastify.post('/opportunitiesbyName', lookupDeals)
     fastify.post('/getTaskbyOpportunityId', opportunityTask)
     fastify.post('/getOpportunitiesbyInvid', inventorywithdeals)
-
     fastify.post('/inventories', getInventories)
     fastify.post('/UpsertInventory', upsertInventories)
     fastify.post('/deleteInventory', deleteInventories)
     fastify.post('/InventoryName', lookupInventory)
-
     fastify.post('/contacts', getContact)
     fastify.post('/UpsertContact', upsertContact)
     fastify.post('/deleteContact', deleteContact)
     fastify.post('/getContactsbyAccountId', accountsContact)
-
     fastify.post('/accounts', getAccount)
     fastify.post('/UpsertAccount', upsertAccount)
     fastify.post('/deleteAccount', deleteAccount)

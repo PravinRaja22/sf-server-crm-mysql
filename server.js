@@ -13,7 +13,6 @@ console.log(path.join(__dirname,'./uploads'));
 
 fastify.register(Multer.contentParser);
 
-
 fastify.register(require('./routes/routes'),{
     prefix:'/api'
 })
