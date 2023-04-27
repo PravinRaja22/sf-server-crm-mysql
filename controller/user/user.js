@@ -72,9 +72,9 @@ const deleteUser = async (request, reply) => {
 async function getSingleUser(request, reply) {
     console.log('inside get single User is ' + request);
     try {
-        let sql = "select * from User where userName =" + request.body.userName;
-        let result = await executeQuery(sql, []);
-        if (!result) {
+        let sql = "select * from User where userName like '%" + request.body.userName + "%'";
+        let existingUser = await executeQuery(sql, []);
+        if (!existingUser) {
             console.log("inside not the existing user");
             reply.send({
                 status: "failure",

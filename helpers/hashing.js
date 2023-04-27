@@ -16,7 +16,8 @@ const hashGenerate =async (plainPassword)=>{
     }
     catch(error)
     {
-    console.log(error)
+    console.log("Error is Hash Password "+error.message)
+    return error.message
     }
 }
 const hashValidator=async (plainPassword,hashedPassword)=>{

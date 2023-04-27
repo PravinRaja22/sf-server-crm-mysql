@@ -29,7 +29,7 @@ const executeQuery = (query, arrayparams,result) => {
 
 
         if (err) {
-          errorcount++;
+         // errorcount++;
           console.log("error executing the query : " + err.message)
           return (err)
         }
