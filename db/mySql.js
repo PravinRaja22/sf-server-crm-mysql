@@ -40,7 +40,6 @@ const executeQuery = (query, arrayparams,result) => {
       })
     }
     catch (err) {
-      console.log('error part :' + count++);
       console.log(err.messaage);
       reject(err)
     }
