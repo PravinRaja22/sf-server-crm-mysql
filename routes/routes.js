@@ -32,7 +32,7 @@ function getdatafromreact(fastify, options, done) {
     fastify.post('/delete',deleteUser )
     fastify.post('/Users',getUser )
 
-    fastify.post('checkSignUpUser',getSignUpPageUser)
+    fastify.post('/checkSignUpUser',getSignUpPageUser)
 
 fastify.get('/',async(request,reply)=>{
     reply.send("testpage")
