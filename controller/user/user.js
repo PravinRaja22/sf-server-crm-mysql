@@ -96,6 +96,8 @@ async function getSingleUser(request, reply) {
                 console.log("inside password is correct")
                 const token = await tokenGenerator(existingUser.userName)
                 console.log("jwt token", token)
+                reply.header('set-cookie', token);
+                console.log(reply.header)
                 reply.send({
                     status: "success",
                     content: token,
