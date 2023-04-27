@@ -30,7 +30,14 @@ function getdatafromreact(fastify, options, done) {
     fastify.post('/UpsertUser',upsertUsers )
     fastify.post('/delete',deleteUser )
     fastify.post('/Users',getUser )
+
     fastify.post('/checkSignUpUser',getSignUpPageUser)
+
+fastify.get('/',async(request,reply)=>{
+    reply.send("testpage")
+})
+
+
     fastify.post('/leads', getEnquiry)
     fastify.post('/UpsertLead', upsertEnquiry)
     fastify.post('/deleteLead', deleteEnquiry)

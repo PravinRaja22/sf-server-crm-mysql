@@ -5,7 +5,8 @@ async function otpVerification(request,otp) {
     let subject = "OTP Verification Code";
     let Body = "Your otp code to signup clouddesk CRM tool is  " +otp;
     let emailId=request.body.emailId
-    console.log('Email id is : '+emailId);
+    console.log(request.body)
+        console.log('Email id is : '+emailId);
     console.log('Subject is : ' + subject);
     console.log('Body is : ' + Body);
   

@@ -1,9 +1,10 @@
 const {otpVerification} = require('../../Email/otpverificationgmail')
+let generatedotp;
+
 const otpEmail =async (request,reply)=>{
-
     try {
-        let generatedotp;
 
+        console.log("initial value of generatedotp is "+generatedotp)
         if (!request.body.otp) {
             console.log("inside generate otp")
             generatedotp = Math.floor(1000 + Math.random() * 9000);
@@ -14,6 +15,9 @@ const otpEmail =async (request,reply)=>{
 
         }
         else if (request.body.otp) {
+
+            console.log("else if  value of generatedotp is "+generatedotp)
+
             if (request.body.otp == generatedotp) {
                 console.log("inside otp is correct")
                 console.log("inputted otp is " + request.body.otp)
