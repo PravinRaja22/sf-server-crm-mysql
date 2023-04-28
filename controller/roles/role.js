@@ -3,7 +3,7 @@ const getRole = async (request,reply)=>{
     try {
 
         if(request.query.departmentName){
-            var sql = "select * from role where depatmentName like '%"+request.query.departmentName+ "%'";
+            var sql = "select * from role where departmentName like '%"+request.query.departmentName+ "%'";
             var getRolerecords = await executeQuery(sql,[])
         }
         else{
