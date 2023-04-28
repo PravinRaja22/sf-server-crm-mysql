@@ -20,8 +20,9 @@ const { inventorywithdeals } = require('../controller/deals/dealwithinventory')
 const { Inventorywithaccount } = require('../controller/Account/accountInventory')
 const { accountsContact } = require('../controller/Account/accountContacts')
 const { getPicklistvalue, getPicklistname } = require('../controller/picklist/picklist')
-const {getUser,upsertUsers,deleteUser,getSingleUser,getSignUpPageUser} = require('../controller/user/user')
-const {otpEmail} = require('../controller/Email/otpEmail')
+const { getUser, upsertUsers, deleteUser, getSingleUser, getSignUpPageUser } = require('../controller/user/user')
+const { otpEmail } = require('../controller/Email/otpEmail')
+const { getRole,upsertRoles,deleteRole } = require('../controller/roles/role')
 function getdatafromreact(fastify, options, done) {
 
     fastify.post("/generateOTP", otpEmail)
@@ -30,14 +31,13 @@ function getdatafromreact(fastify, options, done) {
     fastify.post('/UpsertUser',upsertUsers )
     fastify.post('/delete',deleteUser )
     fastify.post('/Users',getUser )
-
+    fastify.post('/roles',getRole)
     fastify.post('/checkSignUpUser',getSignUpPageUser)
-
-fastify.get('/',async(request,reply)=>{
+    fastify.post('/upsertRole',upsertRoles)
+    fastify.post('/deleteRole',deleteRole)
+    fastify.get('/',async(request,reply)=>{
     reply.send("testpage")
-})
-
-
+    })
     fastify.post('/leads', getEnquiry)
     fastify.post('/UpsertLead', upsertEnquiry)
     fastify.post('/deleteLead', deleteEnquiry)
@@ -64,20 +64,16 @@ fastify.get('/',async(request,reply)=>{
     fastify.post('/accountsname', lookupAccount)
     fastify.post('/getTaskbyAccountId', accountTask)
     fastify.post('/getAccountbyInventory', Inventorywithaccount)
-
     fastify.post('/Task', getTask)
     fastify.post('/UpsertTask', upsertTask)
     fastify.post('/deleteTask', deleteTask)
     // fastify.post('/UpdateTask', updateTask)
-
     fastify.post('/uploadfile', { preHandler: fileUpload }, insertFile)
     fastify.post('/generatePreview', { preHandler: fileUpload }, genaratePreview)
     fastify.post('/dataloaderAccount', { preHandler: fileUpload }, dataloaderaccount)
     fastify.post('/dataloaderOpportunity', { preHandler: fileUpload }, dataloaderdeals)
     fastify.post('/dataloaderlead', { preHandler: fileUpload }, dataloaderEnquiry)
     fastify.post('/bulkemail', { preHandler: fileUpload }, sendEmail)
-
-
     fastify.post('/getpicklistcountry', getPicklistname)
     fastify.post('/getpickliststate', getPicklistvalue)
     done()
