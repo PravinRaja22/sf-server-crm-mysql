@@ -2,7 +2,7 @@ const { executeQuery } = require('../../db/mySql')
 
 const getPermissions = async (request, reply) => {
     try {
-        var sql = "select * from permission"
+        var sql = "select * from permissions"
         let getPermissionsdata = await executeQuery(sql, [])
         reply.send(getPermissionsdata)
     } catch (error) {

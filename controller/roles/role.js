@@ -19,7 +19,7 @@ console.log(request.body)
                 console.log("inside Account lookup with searchkey");
                 var sql = "select _id,roleName from role where departmentName like '%"+request.body.departmentName+ "%' and roleName  like '%"+request.body.role+ "%'";
                 let getRoledata = await executeQuery(sql, [])
-             console.log(getRoledata)
+                console.log(getRoledata)
                 reply.send(getRoledata)
             
             }
