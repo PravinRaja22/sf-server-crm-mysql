@@ -13,13 +13,11 @@ if(!request.query.searchKey){
                 id:element._id
             })
         });
-        reply.send(accountName)
-    
+        reply.send(accountName)  
     }
     catch (err) {
         console.log("inside Account lookup error page");
-        reply.send(err.message)
-    
+        reply.send(err.message)  
     }
 }
 else if (request.query.searchKey){
@@ -36,16 +34,12 @@ else if (request.query.searchKey){
                 id:element._id
             })
         });
-        reply.send(accountName)
-    
+        reply.send(accountName)    
     }
     catch (err) {
         console.log("inside Account lookup error page");
-        reply.send(err.message)
-    
+        reply.send(err.message)  
     }
-
-
 }
 
 }

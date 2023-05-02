@@ -12,7 +12,18 @@ const getPermissions = async (request, reply) => {
     }
 
 }
-
+const sendRolePermission = async (request,reply)=>{
+    try {
+     console.log("inside send Role permission data base ")
+     console.log("departMent role "+JSON.stringify(request.headers))
+      var sql =   "select permissionSets from permissions where roleDetails ->'$.roleName'like '%" + request.headers.role + "%'and department  like '%"+request.headers.departmentname+ "%'";
+      let getPermissionsdata2 = await executeQuery(sql, [])
+      console.log(getPermissionsdata2)
+      reply.send(getPermissionsdata2)
+    } catch (error) {
+        
+    }
+}
 
 const upsertPermissions = async (request, reply) => {
     try {
@@ -58,5 +69,5 @@ const deletePermission = async (request, reply) => {
 }
 
 module.exports={
-    getPermissions,upsertPermissions,deletePermission
+    getPermissions,upsertPermissions,deletePermission,sendRolePermission
 }
