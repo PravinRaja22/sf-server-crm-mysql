@@ -6,7 +6,6 @@ const getPicklistvalue = async (request, reply) => {
         console.log(request.query.table);
       //  var sql = "select * from picklist where  fieldName = " + request.query.data+" and tableName = "+request.query.tablename
         let sql = 'SELECT * FROM picklist WHERE Country = ? AND tableName = ?';
-       // let sql = 'SELECT * FROM picklist';    
         let values = [request.query.country, request.query.table]
         let getpicklistdata = await executeQuery(sql,values)
         reply.send(getpicklistdata)

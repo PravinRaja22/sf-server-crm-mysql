@@ -23,6 +23,7 @@ const { getPicklistvalue, getPicklistname } = require('../controller/picklist/pi
 const { getUser, upsertUsers, deleteUser, getSingleUser, getSignUpPageUser } = require('../controller/user/user')
 const { otpEmail } = require('../controller/Email/otpEmail')
 const { getRole,upsertRoles,deleteRole } = require('../controller/roles/role')
+const {getPermissions,upsertPermissions,deletePermission}=  require('../controller/permission/permission')
 function getdatafromreact(fastify, options, done) {
 
     fastify.post("/generateOTP", otpEmail)
@@ -31,10 +32,17 @@ function getdatafromreact(fastify, options, done) {
     fastify.post('/UpsertUser',upsertUsers )
     fastify.post('/delete',deleteUser )
     fastify.post('/Users',getUser )
-    fastify.post('/roles',getRole)
     fastify.post('/checkSignUpUser',getSignUpPageUser)
+
+    fastify.post('/roles',getRole)
     fastify.post('/upsertRole',upsertRoles)
     fastify.post('/deleteRole',deleteRole)
+
+   fastify.post('/getPermissions',getPermissions)
+   fastify.post('/upsertPermission',upsertPermissions)
+   fastify.post('/deletePermission',deletePermission)
+
+
     fastify.get('/',async(request,reply)=>{
     reply.send("testpage")
     })

@@ -1,12 +1,36 @@
 const { executeQuery } = require('../../db/mySql.js')
 const getRole = async (request,reply)=>{
     try {
-
-        if(request.query.departmentName){
-            var sql = "select _id,roleName from role where departmentName like '%"+request.query.departmentName+ "%'";
+console.log(request.body)
+        if(request.body.departmentName && request.body.role == null){
+            console.log("inside if of departmentName")
+            var sql = "select _id,roleName from role where departmentName like '%"+request.body.departmentName+ "%'";
             var getRolerecords = await executeQuery(sql,[])
+            console.log(getRolerecords)
+            reply.send(getRolerecords)
         }
-        else{
+
+        else if (request.body.departmentName && request.body.role != null){
+    
+            console.log("inside else if of role and department name")
+            console.log("inside else if lookup Account");
+            console.log(request.body.role);
+            try {
+                console.log("inside Account lookup with searchkey");
+                var sql = "select _id,roleName from role where departmentName like '%"+request.body.departmentName+ "%' and roleName  like '%"+request.body.role+ "%'";
+                let getRoledata = await executeQuery(sql, [])
+             console.log(getRoledata)
+                reply.send(getRoledata)
+            
+            }
+            catch (err) {
+                console.log("inside Account lookup error page");
+                reply.send(err.message)
+            
+            }
+        
+        
+        }        else{
 
             var sql = "select * from role ";
             var getRolerecords = await executeQuery(sql,[])
@@ -21,6 +45,8 @@ const getRole = async (request,reply)=>{
         reply.send(error.message)
     }
 }
+
+
 
 const upsertRoles = async (request, reply) => {
     try {

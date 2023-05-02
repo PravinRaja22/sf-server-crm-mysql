@@ -105,11 +105,6 @@ async function getSingleUser(request, reply) {
                 console.log("jwt token", token)
                 reply.header('set-cookie', token);
                 console.log(reply.header)
-                console.log("Before assigning test to mysql user name is ====>")
-                console.log(process.env.MYSQLUSERNAME)
-                process.env.MYSQLUSERNAME='test';
-                console.log("after assigning test to mysql user name is ====>")
-                console.log(process.env.MYSQLUSERNAME)
                 reply.send({
                     status: "success",
                     content: token,
