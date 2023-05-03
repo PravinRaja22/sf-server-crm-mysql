@@ -15,13 +15,29 @@ const getPermissions = async (request, reply) => {
 const sendRolePermission = async (request,reply)=>{
     try {
      console.log("inside send Role permission data base ")
-     console.log("departMent role "+JSON.stringify(request.headers))
+     let parsedPermission
+     console.log(request.headers)
+    //  request.headers.role = "VP"
+    //  request.headers.departmentname = "Admin"
       var sql =   "select permissionSets from permissions where roleDetails ->'$.roleName'like '%" + request.headers.role + "%'and department  like '%"+request.headers.departmentname+ "%'";
       let getPermissionsdata2 = await executeQuery(sql, [])
-      console.log(getPermissionsdata2)
+      console.log(getPermissionsdata2[0].permissionSets)
+
+      getPermissionsdata2.forEach(function(variable){
+         parsedPermission = JSON.parse(variable.permissionSets);
+      });
+    console.log(parsedPermission)
+    parsedPermission.forEach(e =>{
+//console.log(e) 
+    })
+
+    console.log(request.headers)
+
       reply.send(getPermissionsdata2)
     } catch (error) {
-        
+        console.log(error.message)
+        reply.send(error.message)
+
     }
 }
 
@@ -58,7 +74,7 @@ const deletePermission = async (request, reply) => {
     try {
         console.log('query:', request.query.code);
         let deletePermissiondata = request.query.code
-        var sql = 'DELETE FROM Permission WHERE _id = ' + deletePermissiondata;
+        var sql = 'DELETE FROM permissions WHERE _id = ' + deletePermissiondata;
         let deletePermissionResult = await executeQuery(sql, [])
         reply.send("Data Deleted Successfully")
     }
