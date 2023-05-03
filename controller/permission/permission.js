@@ -58,7 +58,7 @@ const deletePermission = async (request, reply) => {
     try {
         console.log('query:', request.query.code);
         let deletePermissiondata = request.query.code
-        var sql = 'DELETE FROM Permission WHERE _id = ' + deletePermissiondata;
+        var sql = 'DELETE FROM permissions WHERE _id = ' + deletePermissiondata;
         let deletePermissionResult = await executeQuery(sql, [])
         reply.send("Data Deleted Successfully")
     }
