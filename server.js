@@ -6,6 +6,7 @@ const dotenv = require("dotenv").config();
 fastify.register(require('@fastify/static'),{
     root:path.join(__dirname,'./uploads')
 })
+fastify.register(require('@fastify/formbody'));
 
 const Multer = require('fastify-multer');
 
