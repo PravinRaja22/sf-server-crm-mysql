@@ -24,16 +24,19 @@ const { getUser, upsertUsers, deleteUser, getSingleUser, getSignUpPageUser } = r
 const { otpEmail } = require('../controller/Email/otpEmail')
 const { getRole,upsertRoles,deleteRole } = require('../controller/roles/role')
 const {getPermissions,upsertPermissions,deletePermission,sendRolePermission}=  require('../controller/permission/permission')
+const {getAllTable} = require ('../controller/showTable/table.js')
 function getdatafromreact(fastify, options, done) {
 
     fastify.post("/generateOTP", otpEmail)
     fastify.post('/signin',getSingleUser)
     fastify.post('/signup',upsertUsers )
-    fastify.post('/UpsertUser',upsertUsers )
-    fastify.post('/delete',deleteUser )
-    fastify.post('/Users',getUser )
+    fastify.post('/UpsertUser',upsertUsers)
+    fastify.post('/delete',deleteUser)
+    fastify.post('/Users',getUser)
     fastify.post('/checkSignUpUser',getSignUpPageUser)
     fastify.post('/sendRolePermission',sendRolePermission)
+
+    fastify.post ('/getObject',getAllTable)
 
     fastify.post('/roles',getRole)
     fastify.post('/upsertRole',upsertRoles)
