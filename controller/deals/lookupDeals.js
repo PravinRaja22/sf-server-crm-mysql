@@ -27,6 +27,7 @@ const lookupDeals = async (request, reply) => {
             var sql = "select _id,opportunityName from deals WHERE opportunityName like '%" + request.query.searchKey + "%'";
             let getOpportunitydata = await executeQuery(sql, [])
             let opportunityName = [];
+            let leadName =[{}]
             getOpportunitydata.forEach(element => {
                 leadName.push({
                     opportunityName: element.opportunityName,
