@@ -7,22 +7,17 @@ const getContact = async (request, reply) => {
         let getContactdata = await executeQuery(sql, [])
         console.log(getContactdata);
         getContactdata.forEach(element => {
-            //we are adding below object to send a response to user interface
             element.accountDetails = {
                 accountName: element.AccountName,
                 id: element.AccountId
             }
-
         });
         reply.send(getContactdata)
-
     }
     catch (err) {
         console.log('error in contact get')
         reply.send(err.message)
-
     }
-
 }
 
 const upsertContact = async (request, reply) => {
@@ -38,24 +33,14 @@ const upsertContact = async (request, reply) => {
              if (names[i] != 'accountDetails') {
                 {
                     result[names[i]] = values[i]
-
                 }
               }
             console.log(result);
         }
         toObject(objdata, objvalues)
         var sql = 'REPLACE INTO contact SET ?'
-        // var values = {
-        //     salutation: request.body.salutation,
-        //     firstname: request.body.firstName,
-        //     Phone: request.body.phone,
-        // }
-       // console.log(values);
-
         let insertContact = await executeQuery(sql, result)
         console.log(insertContact)
-
-
         reply.send("Contact inserted Successfully")
     }
     catch (err) {
@@ -73,9 +58,7 @@ const deleteContact = async (request, reply) => {
         var sql = 'DELETE FROM contact WHERE _id = ' + deleteContactdata;
         let deleteContactResult = await executeQuery(sql, [])
         reply.send("Contact Deleted Successfully")
-
     }
-
     catch (err) {
         console.log("error happenend in Contact deletion")
         reply.send(err.message)

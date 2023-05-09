@@ -1,18 +1,25 @@
-const { executeQuery } = require('../../db/mySql')
+const { executeQuery } = require('../../db/mySql');
+const { checkAccess } = require('../authorization/checkAccess');
 const getAccount = async (request, reply) => {
     console.log("inside get Account");
     console.log(request.body)
     try {
-        var sql = "select * from Account";
-        let getAccountdata = await executeQuery(sql, [])
-        getAccountdata.forEach(element => {
-            //we are adding below object to send a response to user interface
-            element.InventoryDetails = {
-                propertyName: element.InventoryName,
-                id: element.InventoryId
-            }
-        });
-        reply.send(getAccountdata)
+        
+        // var accessData = await checkAccess(role, department, object)
+        // console.log(accessData)
+            var sql = "select * from Account";
+            let getAccountdata = await executeQuery(sql, [])
+            getAccountdata.forEach(element => {
+                //we are adding below object to send a response to user interface
+                element.InventoryDetails = {
+                    propertyName: element.InventoryName,
+                    id: element.InventoryId
+                }
+            });
+            reply.send(getAccountdata)
+        
+
+
     }
     catch (err) {
         console.log('error in Accounts get')

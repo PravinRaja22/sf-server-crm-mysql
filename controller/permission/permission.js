@@ -17,9 +17,10 @@ const sendRolePermission = async (request,reply)=>{
      console.log("inside send Role permission data base ")
      let parsedPermission
      console.log(request.headers)
+     console.log(request.body)
     //  request.headers.role = "VP"
     //  request.headers.departmentname = "Admin"
-      var sql =   "select permissionSets from permissions where roleDetails ->'$.roleName'like '%" + request.headers.role + "%'and department  like '%"+request.headers.departmentname+ "%'";
+      var sql =   "select permissionSets from permissions where roleDetails ->'$.roleName'like '%" + request.body.role + "%'and department  like '%"+request.body.departmentname+ "%'";
       let getPermissionsdata2 = await executeQuery(sql, [])
       console.log(getPermissionsdata2[0].permissionSets)
 
