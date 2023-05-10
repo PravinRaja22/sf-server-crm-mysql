@@ -79,7 +79,7 @@ function getdatafromreact(fastify, options, done) {
     fastify.post('/deleteContact', deleteContact)
     fastify.post('/getContactsbyAccountId', accountsContact)
 
-    fastify.post('/account', getAccount)
+    fastify.post('/accounts', getAccount)
     fastify.post('/UpsertAccount', upsertAccount)
     fastify.post('/deleteAccount', deleteAccount)
     fastify.post('/accountsname', lookupAccount)

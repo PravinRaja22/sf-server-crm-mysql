@@ -6,7 +6,7 @@ const getAccount = async (request, reply) => {
     try {
         let {loginUserRole,loginUserDepartmentName,object ,access} = request.body
         var accessData = await checkAccess2(loginUserRole, loginUserDepartmentName, object, access)
-        if (accessData == true) {
+      //  if (accessData == true) {
             var sql = "select * from Account";
             let getAccountdata = await executeQuery(sql, [])
             getAccountdata.forEach(element => {
@@ -16,10 +16,10 @@ const getAccount = async (request, reply) => {
                 }
             });
             reply.send(getAccountdata)
-        }
-        else {
-            reply.send("You Dont have Access to Perform this Operation")
-        }
+     //   }
+        // else {
+        //     reply.send("You Dont have Access to Perform this Operation")
+        // }
 
     }
     catch (err) {
