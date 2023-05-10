@@ -1,33 +1,32 @@
 const { executeQuery } = require('../../db/mySql');
-const { checkAccess } = require('../authorization/checkAccess');
+const { checkAccess2 } = require('../authorization/checkAccess2');
 const getAccount = async (request, reply) => {
     console.log("inside get Account");
     console.log(request.body)
     try {
-        
-        // var accessData = await checkAccess(role, department, object)
-        // console.log(accessData)
+        let {loginUserRole,loginUserDepartmentName,object ,access} = request.body
+        var accessData = await checkAccess2(loginUserRole, loginUserDepartmentName, object, access)
+        if (accessData == true) {
             var sql = "select * from Account";
             let getAccountdata = await executeQuery(sql, [])
             getAccountdata.forEach(element => {
-                //we are adding below object to send a response to user interface
                 element.InventoryDetails = {
                     propertyName: element.InventoryName,
                     id: element.InventoryId
                 }
             });
             reply.send(getAccountdata)
-        
-
+        }
+        else {
+            reply.send("You Dont have Access to Perform this Operation")
+        }
 
     }
     catch (err) {
         console.log('error in Accounts get')
         reply.send(err.message)
     }
-
 }
-
 const upsertAccount = async (request, reply) => {
     try {
         console.log("inside insert Account");
@@ -55,24 +54,18 @@ const upsertAccount = async (request, reply) => {
         reply.send(err.message)
     }
 }
-
 const deleteAccount = async (request, reply) => {
     console.log("inside detlete Account");
     try {
-        console.log('query:', request.query.code);
+        console.log('query : ', request.query.code);
         let deleteAccountdata = request.query.code
         var sql = 'DELETE FROM Account WHERE _id = ' + deleteAccountdata;
         let deleteAccountResult = await executeQuery(sql, [])
         reply.send("Account Deleted Successfully")
-
     }
-
     catch (err) {
         console.log("error happenend in Account deletion")
         reply.send(err.message)
     }
 }
-
-
-
 module.exports = { getAccount, upsertAccount, deleteAccount }

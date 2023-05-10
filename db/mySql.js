@@ -19,24 +19,17 @@ const executeQuery = (query, arrayparams,result) => {
   console.log("query is : " + query);
   if(result){
     console.log("result is >>>>"+JSON.stringify(result));
-
   }
-  
-
   return new Promise((resolve, reject) => {
     try {
       pool.query(query, arrayparams, (err, data) => {
-
-
         if (err) {
           console.log("error executing the query : " + err.message)
           return (err)
         }
         else {
-
           resolve(data)
         }
-
       })
     }
     catch (err) {

@@ -22,59 +22,74 @@ const { accountsContact } = require('../controller/Account/accountContacts')
 const { getPicklistvalue, getPicklistname } = require('../controller/picklist/picklist')
 const { getUser, upsertUsers, deleteUser, getSingleUser, getSignUpPageUser } = require('../controller/user/user')
 const { otpEmail } = require('../controller/Email/otpEmail')
+const { getTabs }=require('../controller/Tabs/getTabs')
 const { getRole,upsertRoles,deleteRole } = require('../controller/roles/role')
 const {getPermissions,upsertPermissions,deletePermission,sendRolePermission}=  require('../controller/permission/permission')
 const {getAllTable} = require ('../controller/showTable/table.js')
 const { checkAccess } = require('../controller/authorization/checkAccess')
 function getdatafromreact(fastify, options, done) {
+
     fastify.post("/generateOTP", otpEmail)
     fastify.post("/checkAccess", checkAccess)
+
     fastify.post('/signin',getSingleUser)
     fastify.post('/signup',upsertUsers )
+
     fastify.post('/UpsertUser',upsertUsers)
     fastify.post('/delete',deleteUser)
     fastify.post('/Users',getUser)
     fastify.post('/checkSignUpUser',getSignUpPageUser)
     fastify.post('/sendRolePermission',sendRolePermission)
+
     fastify.post ('/getObject',getAllTable)
+    fastify.post ('/getTabs',getTabs)
     fastify.post('/roles',getRole)
     fastify.post('/upsertRole',upsertRoles)
     fastify.post('/deleteRole',deleteRole)
     fastify.post('/getPermissions',getPermissions)
+
     fastify.post('/upsertPermission',upsertPermissions)
     fastify.post('/deletePermission',deletePermission)
+
     fastify.get('/',async(request,reply)=>{
     reply.send("testpage")
     })
+
     fastify.post('/leads', getEnquiry)
     fastify.post('/UpsertLead', upsertEnquiry)
     fastify.post('/deleteLead', deleteEnquiry)
     fastify.post('/LeadsbyName', lookupEnquiry)
     fastify.post('/getLeadsbyOppid', enquirywithdeals)
     fastify.post('/getTaskbyLeadId', leadTask)
+
     fastify.post('/opportunities', getDeals)
     fastify.post('/UpsertOpportunity', upsertDeals)
     fastify.post('/deleteOpportunity', deleteDeals)
     fastify.post('/opportunitiesbyName', lookupDeals)
     fastify.post('/getTaskbyOpportunityId', opportunityTask)
+
     fastify.post('/getOpportunitiesbyInvid', inventorywithdeals)
     fastify.post('/inventories', getInventories)
     fastify.post('/UpsertInventory', upsertInventories)
     fastify.post('/deleteInventory', deleteInventories)
     fastify.post('/InventoryName', lookupInventory)
+
     fastify.post('/contacts', getContact)
     fastify.post('/UpsertContact', upsertContact)
     fastify.post('/deleteContact', deleteContact)
     fastify.post('/getContactsbyAccountId', accountsContact)
-    fastify.post('/accounts', getAccount)
+
+    fastify.post('/account', getAccount)
     fastify.post('/UpsertAccount', upsertAccount)
     fastify.post('/deleteAccount', deleteAccount)
     fastify.post('/accountsname', lookupAccount)
     fastify.post('/getTaskbyAccountId', accountTask)
     fastify.post('/getAccountbyInventory', Inventorywithaccount)
+
     fastify.post('/Task', getTask)
     fastify.post('/UpsertTask', upsertTask)
     fastify.post('/deleteTask', deleteTask)
+
     // fastify.post('/UpdateTask', updateTask)
     fastify.post('/uploadfile', { preHandler: fileUpload }, insertFile)
     fastify.post('/generatePreview', { preHandler: fileUpload }, genaratePreview)

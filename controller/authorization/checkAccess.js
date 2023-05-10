@@ -1,10 +1,8 @@
 const { executeQuery } = require('../../db/mySql')
 const checkAccess = async (request,reply) => {
     try {
-        let role = request.body.loginUserRole;
-        let department = request.body.loginUserDepartmentName
-        let object = request.body.object
-        var sql = "select permissionSets from permissions where roleDetails ->'$.roleName'like '%" + role + "%'and department  like '%" + department + "%'";
+        let {loginUserRole,loginUserDepartmentName,object} = request.body
+        var sql = "select permissionSets from permissions where roleDetails ->'$.roleName'like '%" + loginUserRole + "%'and department  like '%" + loginUserDepartmentName + "%'";
         let result = await executeQuery(sql, [])
         let access = {}
         result.forEach((variable) => {

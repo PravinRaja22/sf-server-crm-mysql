@@ -1,4 +1,5 @@
-const { executeQuery } = require('../../db/mySql')
+const { executeQuery } = require('../../db/mySql');
+const { checkObjectAccess } = require('../authorization/checkAccess2');
 
 const getAllTable = async (request,reply) =>{
     try {
