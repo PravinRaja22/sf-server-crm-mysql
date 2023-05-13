@@ -11,7 +11,6 @@ const checkObjectAccess = async (role,department) => {
             let data  =  JSON.parse(variable.permissionSets);
             data.filter(e =>{
                 if(e.permissions.read == true){
-                    console.log("inside filter ")
                     console.log(e)
                     objectData.push(e.object)
                 }

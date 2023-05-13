@@ -8,7 +8,7 @@ const getTabs = async (request,reply) =>{
         console.log(accessedObject)
         reply.send(accessedObject)
     } catch (error) {
-console.log("error in get Tabs : ",error.message)
+        console.log("error in get Tabs : ",error.message)
         reply.send(error.message)
         
     }
