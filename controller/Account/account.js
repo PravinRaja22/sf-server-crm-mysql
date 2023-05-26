@@ -27,6 +27,7 @@ const getAccount = async (request, reply) => {
         reply.send(err.message)
     }
 }
+
 const upsertAccount = async (request, reply) => {
     try {
         console.log("inside insert Account");
@@ -54,6 +55,7 @@ const upsertAccount = async (request, reply) => {
         reply.send(err.message)
     }
 }
+
 const deleteAccount = async (request, reply) => {
     console.log("inside detlete Account");
     try {

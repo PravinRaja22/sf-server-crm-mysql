@@ -5,7 +5,7 @@ const { getContact, upsertContact, deleteContact } = require('../controller/cont
 const { getAccount, upsertAccount, deleteAccount } = require('../controller/Account/account.js')
 const { getTask, upsertTask, deleteTask } = require('../controller/task/task')
 const { fileUpload, Multer } = require('../uploader/multer')
-const { insertFile } = require('../controller/fileupload/fileupload')
+const {getFiles, upsertFiles, deleteFiles } = require('../controller/fileupload/fileupload')
 const { genaratePreview, dataloaderaccount, dataloaderdeals, dataloaderEnquiry } = require('../controller/dataLoader/dataloader')
 const { sendEmail } = require('../Email/sendemail')
 const { lookupEnquiry } = require('../controller/enquiry/lookupenquiry')
@@ -50,6 +50,10 @@ fastify.post('/getFields',getFields)
 fastify.post('/roles',getRole)
 fastify.post('/upsertRole',upsertRoles)
 fastify.post('/deleteRole',deleteRole)
+
+fastify.post('/files',getFiles)
+fastify.post('/upsertfiles',upsertFiles)
+fastify.post('/deletefiles',deleteFiles)
 
 fastify.post('/getPermissions',getPermissions)
 fastify.post('/upsertPermission',upsertPermissions)
@@ -101,7 +105,7 @@ fastify.post('/dashboardGroup',dashboardGroup)
 
 
 
-fastify.post('/uploadfile', { preHandler: fileUpload }, insertFile)
+fastify.post('/uploadfile', { preHandler: fileUpload }, upsertFiles)
 fastify.post('/generatePreview', { preHandler: fileUpload }, genaratePreview)
 fastify.post('/dataloaderAccount', { preHandler: fileUpload }, dataloaderaccount)
 fastify.post('/dataloaderOpportunity', { preHandler: fileUpload }, dataloaderdeals)
