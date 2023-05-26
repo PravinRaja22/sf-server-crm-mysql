@@ -15,7 +15,7 @@ const tokenValidator = async (token) => {
     console.log("token validator ", token);
     try {
         console.log("inside try ",token);
-        const dataa = await jwt.verify(token,"jwttokenkey");
+        const dataa =await jwt.verify(token,"jwttokenkey");
         console.log("dataa ", dataa);
         return dataa;
     } catch (error) {
