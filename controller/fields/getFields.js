@@ -1,7 +1,7 @@
 const { executeQuery } = require('../../db/mySql');
 const getFields = async (request,reply) =>{
     try {
-        var sql ='SHOW COLUMNS FROM '+request.query.object;
+        var sql ='SHOW COLUMNS FROM '+request.params.object;
         let result = await executeQuery(sql,[])
         let field=[]
         result.forEach(e =>{
