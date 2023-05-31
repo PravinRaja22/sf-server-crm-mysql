@@ -1,6 +1,6 @@
 const { executeQuery } = require('../../db/mySql')
 
-const checkObjectAccess = async (role,department) => {
+const checkObjectAccess = async (department,role) => {
     try {
         console.log("iniside object Access data "+role)
         console.log("inside check access 2 "+role , department)
