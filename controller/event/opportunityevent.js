@@ -9,7 +9,6 @@ const opportunityEvent = async (request, reply) => {
     try {
         var sql = "select a.* from event a, deals b where b._id= a.OpportunityId and a.OpportunityId = " + request.query.searchId;
         let getopportunityEvent = await executeQuery(sql, [])
-
         console.log(getopportunityEvent);
         getopportunityEvent.forEach(e =>{
             e.opportunityDetails ={

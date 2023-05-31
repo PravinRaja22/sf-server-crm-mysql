@@ -10,7 +10,6 @@ const getTabs = async (request,reply) =>{
     } catch (error) {
         console.log("error in get Tabs : ",error.message)
         reply.send(error.message)
-        
     }
     
 }

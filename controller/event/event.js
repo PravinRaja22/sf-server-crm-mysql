@@ -1,6 +1,6 @@
 const { executeQuery } = require('../../db/mySql')
 const getEvent = async (request, reply) => {
-    console.log("inside get Task");
+    console.log("inside get Event");
     console.log(request.body)
     try {
         var sql = "select * from event";
@@ -12,11 +12,7 @@ const getEvent = async (request, reply) => {
                     leadName: e.leadName
                 }
             }
-
-
-
             else if (e.accountId && e.accountName) {
-
                 e.accountDetails = {
                     id: e.accountId,
                     accountName: e.accountName
@@ -74,7 +70,7 @@ const upsertEvent = async (request, reply) => {
 
     }
     catch (err) {
-        console.log('error in inventory insertion ');
+        console.log('error in event insertion ');
         reply.send(err.message)
     }
 
