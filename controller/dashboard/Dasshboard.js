@@ -41,8 +41,8 @@ const upsertDashboard = async (request, reply) => {
 const deleteDashboard = async (request, reply) => {
     console.log("inside detlete Dashboard");
     try {
-        console.log('query : ', request.query.code);
-        let deleteDashboarddata = request.query.code
+        console.log('query : ', request.params.id);
+        let deleteDashboarddata = rrequest.params.id
         var sql = 'DELETE FROM Dashboard WHERE _id = ' + deleteDashboarddata;
         let deleteDashboardResult = await executeQuery(sql, [])
         reply.send("Dashboard Deleted Successfully")

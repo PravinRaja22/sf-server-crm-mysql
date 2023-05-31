@@ -45,7 +45,7 @@ fastify.post('/sendRolePermission',sendRolePermission)
 
 fastify.post ('/getObject',getAllTable)
 fastify.post ('/getTabs',getTabs)
-fastify.post('/getFields',getFields)
+fastify.post('/getFields/:object',getFields)
 
 fastify.post('/roles',getRole)
 fastify.post('/upsertRole',upsertRoles)
@@ -100,7 +100,7 @@ fastify.post('/deleteTask', deleteEvent)
 
 fastify.post('/dashboard',getDashoard)
 fastify.post('/upsertDashboard',upsertDashboard)
-fastify.post('/deleteDashboard',deleteDashboard)
+fastify.post('/deleteDashboard/:id',deleteDashboard)
 fastify.post('/dashboardGroup',dashboardGroup)
 
 
