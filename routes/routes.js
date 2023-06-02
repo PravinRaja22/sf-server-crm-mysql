@@ -29,6 +29,7 @@ const { getAllTable} = require ('../controller/showTable/table.js')
 const { checkAccess } = require('../controller/authorization/checkAccess')
 const { getFields } = require('../controller/fields/getFields')
 const { getDashoard,upsertDashboard, deleteDashboard, dashboardGroup } = require('../controller/dashboard/Dasshboard')
+const { getrelatedFile } = require('../controller/fileupload/relatedFile')
 function getdatafromreact(fastify, options, done) {
 
 fastify.post("/generateOTP", otpEmail)
@@ -97,6 +98,7 @@ fastify.post('/getAccountbyInventory', Inventorywithaccount)
 fastify.post('/Task', getEvent)
 fastify.post('/UpsertTask', upsertEvent)
 fastify.post('/deleteTask', deleteEvent)
+fastify.post('/related/file',getrelatedFile)
 
 fastify.post('/dashboard',getDashoard)
 fastify.post('/upsertDashboard',upsertDashboard)

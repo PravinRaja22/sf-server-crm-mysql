@@ -33,6 +33,7 @@ let objfile = {
     modifiedDate:request.body.modifiedDate,
     createdBy:request.body.createdBy,
     modifiedBy:request.body.modifiedBy,
+    relatedTo:request.body.relatedTo,
     size:request.file.size
 }
 
