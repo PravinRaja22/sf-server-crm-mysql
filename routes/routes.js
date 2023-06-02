@@ -52,8 +52,8 @@ fastify.post('/upsertRole',upsertRoles)
 fastify.post('/deleteRole',deleteRole)
 
 fastify.post('/files',getFiles)
-fastify.post('/upsertfiles',upsertFiles)
-fastify.post('/deletefiles',deleteFiles)
+fastify.post('/upsertfiles',{preHandler: fileUpload },upsertFiles)
+fastify.post('/deletefiles/:id',deleteFiles)
 
 fastify.post('/getPermissions',getPermissions)
 fastify.post('/upsertPermission',upsertPermissions)

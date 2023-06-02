@@ -15,9 +15,31 @@ const getFiles = async (request, reply) => {
 const upsertFiles = async (request, reply) => {
     try {
         console.log("inside insert Files");
-        console.log(request.file);
-        let objdata = Object.keys(request.file);
-        let objvalues = Object.values(request.file);
+     console.log(request.file);
+
+        console.log(request.body.createdDate)
+      
+
+
+        console.log(request.protocol + '://' + request.headers.host + '/'+request.file.filename);
+
+
+
+let objfile = {
+    fileName:request.file.originalname,
+    mimetype:request.file.mimetype,
+    fileUrl:request.protocol + '://' + request.headers.host + '/'+request.file.filename,
+    createdDate:request.body.createdDate,
+    modifiedDate:request.body.modifiedDate,
+    createdBy:request.body.createdBy,
+    modifiedBy:request.body.modifiedBy,
+    size:request.file.size
+}
+
+
+
+        let objdata = Object.keys(objfile);
+        let objvalues = Object.values(objfile);
         let result = {};
         console.log("keys are : " + objdata);
         async function toObject(names, values) {
@@ -29,20 +51,20 @@ const upsertFiles = async (request, reply) => {
         toObject(objdata, objvalues)
         console.log(result);
         var sql = 'REPLACE INTO File SET ?'
-        let insertFile = await executeQuery(sql, result)
+        let insertFile = await executeQuery(sql,result)
         console.log(insertFile)
         reply.send("File inserted Successfully")
     }
     catch (err) {
         console.log('error in File insertion ');
         reply.send(err.message)
-    }
+    }d
 }
 const deleteFiles = async (request, reply) => {
     console.log("inside detlete Files");
     try {
-        console.log('query : ', request.query.code);
-        let deleteFiledata = request.query.code
+        console.log('query : ', request.params.id);
+        let deleteFiledata = request.params.id
         var sql = 'DELETE FROM File WHERE _id = ' + deleteFiledata;
         let deleteDashboardResult = await executeQuery(sql, [])
         reply.send("File Deleted Successfully")

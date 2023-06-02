@@ -1,11 +1,11 @@
 const { executeQuery } = require('../../db/mySql');
 const getDashoard = async (request, reply) => {
     try {
-           console.log("inside get Dashboard");
-            var sql = "select * from Dashboard";
-            let getDashboardData = await executeQuery(sql, [])
-            reply.send(getDashboardData)
-    
+        console.log("inside get Dashboard");
+        var sql = "select * from Dashboard";
+        let getDashboardData = await executeQuery(sql, [])
+        reply.send(getDashboardData)
+
     }
     catch (err) {
         console.log('error in Dashboard get')
@@ -22,10 +22,9 @@ const upsertDashboard = async (request, reply) => {
         console.log("keys are : " + objdata);
         async function toObject(names, values) {
             for (let i = 0; i < names.length; i++) {
-                    result[names[i]] = values[i]
-                }
+                result[names[i]] = values[i]
             }
-        
+        }
         toObject(objdata, objvalues)
         console.log(result);
         var sql = 'REPLACE INTO Dashboard SET ?'
@@ -53,15 +52,15 @@ const deleteDashboard = async (request, reply) => {
     }
 }
 
-const dashboardGroup = async(request,reply)=>{
+const dashboardGroup = async (request, reply) => {
     try {
         console.log('query : ', request.query);
-        let {object,field}= request.query
+        let { object, field } = request.query
         console.log(object)
         console.log(field)
 
-      //  const groupBy = field.join(', ');
-       // var sql = `select ${field},count(*) as count FROM ${object} GROUP BY in ${field}`
+        //  const groupBy = field.join(', ');
+        // var sql = `select ${field},count(*) as count FROM ${object} GROUP BY in ${field}`
 
         const sql = `SELECT ${field}, COUNT(*) AS count FROM ${object} GROUP BY ${field}`;
 
@@ -72,4 +71,4 @@ const dashboardGroup = async(request,reply)=>{
         reply.send(error.message)
     }
 }
-module.exports = { getDashoard, upsertDashboard, deleteDashboard,dashboardGroup }
+module.exports = { getDashoard, upsertDashboard, deleteDashboard, dashboardGroup }
