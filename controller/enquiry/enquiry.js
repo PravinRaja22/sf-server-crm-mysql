@@ -22,14 +22,25 @@ const upsertEnquiry = async (request, reply) => {
         let objvalues = Object.values(request.body);
         let result = {};
         async function toObject(names, values) {
-            for (let i = 0; i < names.length; i++)     
-                if (names[i] != 'propertyCities') {      
-                    result[names[i]] = values[i]   
-                }            
-               
+            for (let i = 0; i < names.length; i++) {
+                if (names[i] != 'propertyCities') {
+                    console.log('Before ',names[i]);
+                    // if (names[i] === 'secondaryPhone') {
+                    //     console.log(names[i], ' secondaryPhone')
+                    //     parseInt(names[i])
+                    // }
+                    // if (names[i] === 'primaryphone') {
+                    //     console.log(names[i], 'primaryPhone')
+                    //     parseInt(names[i])
+                    // }
+                    result[names[i]] = values[i]
+                }
+            }
+
+
         }
         toObject(objdata, objvalues)
-        console.log(result);
+        console.log(result, 'Updated result is parsing phone number');
         var sql = 'REPLACE INTO enquiry SET ?'
         let insertEnquiry = await executeQuery(sql, result)
         console.log(insertEnquiry)

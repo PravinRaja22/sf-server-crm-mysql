@@ -6,13 +6,13 @@ const leadEvent = async (request, reply) => {
         var sql = "select a.* from event a, enquiry b where b._id= a.leadId and a.leadId = " + request.query.searchId;
         let leadsEvents = await executeQuery(sql, [])
         console.log(leadsEvents);
-        leadsTasks.forEach(e =>{
+        leadsEvents.forEach(e =>{
             e.leadDetails ={
                 id:e.leadId,
                 leadName:e.leadName
             }
         })
-        reply.send(leadsTasks)
+        reply.send(leadsEvents)
     }
     catch (err) {
         console.log('error in lead event get')
