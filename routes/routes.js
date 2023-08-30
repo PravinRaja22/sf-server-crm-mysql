@@ -30,6 +30,7 @@ const { checkAccess } = require('../controller/authorization/checkAccess')
 const { getFields } = require('../controller/fields/getFields')
 const { getDashoard,upsertDashboard, deleteDashboard, dashboardGroup } = require('../controller/dashboard/Dasshboard')
 const { getrelatedFile } = require('../controller/fileupload/relatedFile')
+const { lookupUser } = require('../controller/user/lookupUser')
 function getdatafromreact(fastify, options, done) {
 
 fastify.post("/generateOTP", otpEmail)
@@ -43,6 +44,7 @@ fastify.post('/delete',deleteUser)
 fastify.post('/Users',getUser)
 fastify.post('/checkSignUpUser',getSignUpPageUser)
 fastify.post('/sendRolePermission',sendRolePermission)
+fastify.post('/usersByName',lookupUser)
 
 fastify.post ('/getObject',getAllTable)
 fastify.post ('/getTabs',getTabs)

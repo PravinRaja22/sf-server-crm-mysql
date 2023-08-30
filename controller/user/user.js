@@ -45,6 +45,8 @@ const upsertUsers = async (request, reply) => {
         }
         toObject(objdata, objvalues)
         console.log(result);
+        result.fullName = result.firstName+' '+result.lastName;
+        console.log(result ,' After Full Name is ')
         var sql = 'REPLACE INTO user SET ?'
         let insertUser = await executeQuery(sql, result)
         console.log(insertUser)

@@ -4,8 +4,8 @@ const getrelatedFile = async (request,reply) =>{
        const {id,object}=request.query
        console.log("id : ",id)
        console.log("object : ",object)
-        var sql =`select * from files where $ relatedto ->'$.relatedto.object'like ${object} and $ relatedto ->'$.relatedto.id'like ${id}`
-        let result = await executeQuery(sql,[])
+       var sql =   `SELECT * FROM file WHERE relatedTo->'$.id' = ${id}`
+       let result = await executeQuery(sql,[])
         let field=[]
         result.forEach(e =>{
             console.log(e.Field)
