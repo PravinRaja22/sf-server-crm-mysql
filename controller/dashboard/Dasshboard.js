@@ -58,12 +58,9 @@ const dashboardGroup = async (request, reply) => {
         let { object, field } = request.query
         console.log(object)
         console.log(field)
-
         //  const groupBy = field.join(', ');
         // var sql = `select ${field},count(*) as count FROM ${object} GROUP BY in ${field}`
-
         const sql = `SELECT ${field}, COUNT(*) AS count FROM ${object} GROUP BY ${field}`;
-
         let resultData = await executeQuery(sql, []);
         reply.send(resultData);
     } catch (error) {

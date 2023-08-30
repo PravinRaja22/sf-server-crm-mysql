@@ -10,6 +10,7 @@ const getAccount = async (request, reply) => {
             var sql = "select * from Account";
             let getAccountdata = await executeQuery(sql, [])
             getAccountdata.forEach(element => {
+                console.log(element);
                 element.InventoryDetails = {
                     propertyName: element.InventoryName,
                     id: element.InventoryId
@@ -60,10 +61,10 @@ const deleteAccount = async (request, reply) => {
     console.log("inside detlete Account");
     try {
         console.log('query : ', request.query.code);
-        let deleteAccountdata = request.query.code
+        let deleteAccountdata = request.query.code;
         var sql = 'DELETE FROM Account WHERE _id = ' + deleteAccountdata;
-        let deleteAccountResult = await executeQuery(sql, [])
-        reply.send("Account Deleted Successfully")
+        let deleteAccountResult = await executeQuery(sql, []);
+        reply.send("Account Deleted Successfully");
     }
     catch (err) {
         console.log("error happenend in Account deletion")

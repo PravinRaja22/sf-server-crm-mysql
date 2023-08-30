@@ -1,5 +1,4 @@
 const { executeQuery } = require('../../db/mySql')
-
 const checkObjectAccess = async (department,role) => {
     try {
         console.log("iniside object Access data "+role)

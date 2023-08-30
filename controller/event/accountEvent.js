@@ -7,13 +7,13 @@ const accountEvent = async (request, reply) => {
         let accountEvents = await executeQuery(sql, [])
         console.log(accountEvents);
 
-        accountTasks.forEach(e =>{
+        accountEvents.forEach(e =>{
             e.accountDetails ={
                 id:e.accountId,
                 accountName:e.accountName
             }
         })
-        reply.send(accountTasks);
+        reply.send(accountEvents);
     }
     catch (err) {
         console.log('error in Account event get')
