@@ -11,7 +11,6 @@ const getrelatedFile = async (request,reply) =>{
             console.log(e.Field);
             field.push(e.Field);
         })
-        console.log(field);
         reply.send(result);
         
     } catch (e) {

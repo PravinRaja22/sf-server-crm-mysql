@@ -29,8 +29,7 @@ const executeQuery = (query, arrayparams,result) => {
           return (err)
         }
         else {
-          console.log('Error find')
-          console.log(data)
+         
           resolve(data)
         }
       })
