@@ -120,4 +120,4 @@ fastify.post('/getpicklistcountry', getPicklistname)
 fastify.post('/getpickliststate', getPicklistvalue)
 done()
 }
-module.exports = getdatafromreact
+module.exports = getdatafromreact;
