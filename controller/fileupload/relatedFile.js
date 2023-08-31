@@ -4,7 +4,7 @@ const getrelatedFile = async (request,reply) =>{
        const {id,object}=request.query;
        console.log("id : ",id);
        console.log("object : ",object);
-       var sql =   `SELECT * FROM file WHERE relatedTo->'$.id' = ${id} AND relatedTo->'$.object' =${object}`;
+       var sql =   `SELECT * FROM file WHERE relatedTo->'$.id' = ${id} AND relatedTo->'$.object' =${JSON.stringify(object)}`;
        let result = await executeQuery(sql, []);
         let field=[];
         result.forEach(e =>{
