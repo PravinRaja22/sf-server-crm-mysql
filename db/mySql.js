@@ -17,6 +17,7 @@ pool.getConnection((err) => {
 
 const executeQuery = (query, arrayparams,result) => {
   console.log("query is : " + query);
+
   if(result){
     console.log("result is >>>>"+JSON.stringify(result));
   }
@@ -28,6 +29,8 @@ const executeQuery = (query, arrayparams,result) => {
           return (err)
         }
         else {
+          console.log('Error find')
+          console.log(data)
           resolve(data)
         }
       })
